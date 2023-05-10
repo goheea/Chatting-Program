@@ -1,0 +1,21 @@
+C:\Users\zeron\source\repos\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csprojAssemblyReference.cache
+C:\Users\zeron\source\repos\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.Form1.resources
+C:\Users\zeron\source\repos\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.Properties.Resources.resources
+C:\Users\zeron\source\repos\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.GenerateResource.cache
+C:\Users\zeron\source\repos\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CoreCompileInputs.cache
+C:\Users\zeron\source\repos\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.exe.config
+C:\Users\zeron\source\repos\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.exe
+C:\Users\zeron\source\repos\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.pdb
+C:\Users\zeron\source\repos\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.exe
+C:\Users\zeron\source\repos\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.pdb
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.exe.config
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.exe
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.pdb
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.AssemblyReference.cache
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.SuggestedBindingRedirects.cache
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.Form1.resources
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.Properties.Resources.resources
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.GenerateResource.cache
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CoreCompileInputs.cache
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.exe
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.pdb

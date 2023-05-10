@@ -1,0 +1,32 @@
+C:\Users\zeron\source\repos\ChatClient\ChatClient\bin\Debug\ChatClient.exe.config
+C:\Users\zeron\source\repos\ChatClient\ChatClient\bin\Debug\ChatClient.exe
+C:\Users\zeron\source\repos\ChatClient\ChatClient\bin\Debug\ChatClient.pdb
+C:\Users\zeron\source\repos\ChatClient\ChatClient\obj\Debug\ChatClient.csprojAssemblyReference.cache
+C:\Users\zeron\source\repos\ChatClient\ChatClient\obj\Debug\ChatClient.Form1.resources
+C:\Users\zeron\source\repos\ChatClient\ChatClient\obj\Debug\ChatClient.Properties.Resources.resources
+C:\Users\zeron\source\repos\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.GenerateResource.cache
+C:\Users\zeron\source\repos\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.CoreCompileInputs.cache
+C:\Users\zeron\source\repos\ChatClient\ChatClient\obj\Debug\ChatClient.exe
+C:\Users\zeron\source\repos\ChatClient\ChatClient\obj\Debug\ChatClient.pdb
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\ChatClient\ChatClient\bin\Debug\ChatClient.exe.config
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\ChatClient\ChatClient\bin\Debug\ChatClient.exe
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\ChatClient\ChatClient\bin\Debug\ChatClient.pdb
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.AssemblyReference.cache
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.SuggestedBindingRedirects.cache
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\ChatClient\ChatClient\obj\Debug\ChatClient.Form1.resources
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\ChatClient\ChatClient\obj\Debug\ChatClient.Properties.Resources.resources
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.GenerateResource.cache
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.CoreCompileInputs.cache
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\ChatClient\ChatClient\obj\Debug\ChatClient.exe
+D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\ChatClient\ChatClient\obj\Debug\ChatClient.pdb
+C:\Users\gmldk\Desktop\채팅 프로그램\채팅 프로그램\C# Winform_2\ChatClient\ChatClient\bin\Debug\ChatClient.exe.config
+C:\Users\gmldk\Desktop\채팅 프로그램\채팅 프로그램\C# Winform_2\ChatClient\ChatClient\bin\Debug\ChatClient.exe
+C:\Users\gmldk\Desktop\채팅 프로그램\채팅 프로그램\C# Winform_2\ChatClient\ChatClient\bin\Debug\ChatClient.pdb
+C:\Users\gmldk\Desktop\채팅 프로그램\채팅 프로그램\C# Winform_2\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.AssemblyReference.cache
+C:\Users\gmldk\Desktop\채팅 프로그램\채팅 프로그램\C# Winform_2\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.SuggestedBindingRedirects.cache
+C:\Users\gmldk\Desktop\채팅 프로그램\채팅 프로그램\C# Winform_2\ChatClient\ChatClient\obj\Debug\ChatClient.Form1.resources
+C:\Users\gmldk\Desktop\채팅 프로그램\채팅 프로그램\C# Winform_2\ChatClient\ChatClient\obj\Debug\ChatClient.Properties.Resources.resources
+C:\Users\gmldk\Desktop\채팅 프로그램\채팅 프로그램\C# Winform_2\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.GenerateResource.cache
+C:\Users\gmldk\Desktop\채팅 프로그램\채팅 프로그램\C# Winform_2\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.CoreCompileInputs.cache
+C:\Users\gmldk\Desktop\채팅 프로그램\채팅 프로그램\C# Winform_2\ChatClient\ChatClient\obj\Debug\ChatClient.exe
+C:\Users\gmldk\Desktop\채팅 프로그램\채팅 프로그램\C# Winform_2\ChatClient\ChatClient\obj\Debug\ChatClient.pdb
