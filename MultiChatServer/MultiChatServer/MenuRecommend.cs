@@ -14,22 +14,20 @@ namespace MultiChatServer
     internal class MenuRecommend
     {
         static HttpClient client = new HttpClient();
-        string url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"; // URL, getUltraSrtNcst는 초단기실황조회(10분단위)
+        string url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"; // URL, getUltraSrtNcst는 초단기실황조회
         string results = string.Empty;
-        double tmp = 0; //기온
-        int precipitation = 0; //강수형태
-        int humidity = 0; //습도
-
-        string[] menu = {"족발", "보쌈", "막국수", "불족발", "부대찌개", "냉채족발", "부추전", "김치전", "까만찜닭",
-            "빨간찜닭", "로제찜닭", "코다리조림", "꼬막비빔밥", "쭈꾸미정식", "곰탕", "우거지탕", "해물찜", "아구찜",
-            "알곤찜", "대구뽈찜", "꽃게찜", "김치찜", "갈비찜", "설렁탕", "삼계탕", "갈비탕", "육회비빔밥", "함흥냉면",
-            "평양냉면", "회덮밥", "연어덮밥", "모둠초밥", "회전초밥", "대구탕", "알탕", "돈코츠라멘", "미소라멘", "소유라멘",
-            "장어덮밥", "규동(소고기덮밥)", "치킨 마요 덮밥", "삼겹살구이 덮밥", "조개탕", "나가사키 짬뽕탕", "오뎅탕",
-            "김치치즈가츠나베", "가츠동", "카레 돈가스", "등심 돈가스", "텐동", "스테이크 덮밥", "쭈꾸미 덮밥", "낚지 덮밥",
-            "미역국", "죽", "피자", "제육볶음", "떡볶이", "로제 떡볶이", "알리오올리오", "로제 파스타", "크림 파스타",
-            "후라이드 치킨", "양념치킨", "간장치킨", "짜장면", "짬뽕", "쟁반짜장", "간짜장", "쌀국수", "샤브샤브",
-            "우삼겹 덮밥", "스팸김치볶음밥", "소불고기 도시락", "닭갈비 도시락", "순두부찌개", "김치찌개", "고등어 구이",
-            "감자전", "마늘족발", "쪽갈비", "샌드위치", "햄버거", "서브웨이", "수제버거", "이삭토스트", "회",
+        double tmp = 0;
+        double precipitation = 0;
+        string[] menu = {"족발", "보쌈", "막국수", "불족발", "부대찌개", "냉채족발", "부추전", "김치전", "까만찜닭", 
+            "빨간찜닭", "로제찜닭", "코다리조림", "꼬막비빔밥", "쭈꾸미정식", "곰탕", "우거지탕", "해물찜", "아구찜", 
+            "알곤찜", "대구뽈찜", "꽃게찜", "김치찜", "갈비찜", "설렁탕", "삼계탕", "갈비탕", "육회비빔밥", "함흥냉면", 
+            "평양냉면", "회덮밥", "연어덮밥", "모둠초밥", "회전초밥", "대구탕", "알탕", "돈코츠라멘", "미소라멘", "소유라멘", 
+            "장어덮밥", "규동(소고기덮밥)", "치킨 마요 덮밥", "삼겹살구이 덮밥", "조개탕", "나가사키 짬뽕탕", "오뎅탕", 
+            "김치치즈가츠나베", "가츠동", "카레 돈가스", "등심 돈가스", "텐동", "스테이크 덮밥", "쭈꾸미 덮밥", "낚지 덮밥", 
+            "미역국", "죽", "피자", "제육볶음", "떡볶이", "로제 떡볶이", "알리오올리오", "로제 파스타", "크림 파스타",  
+            "후라이드 치킨", "양념치킨", "간장치킨", "짜장면", "짬뽕", "쟁반짜장", "간짜장", "쌀국수", "샤브샤브", 
+            "우삼겹 덮밥", "스팸김치볶음밥", "소불고기 도시락", "닭갈비 도시락", "순두부찌개", "김치찌개", "고등어 구이", 
+            "감자전", "마늘족발", "쪽갈비", "샌드위치", "햄버거", "서브웨이", "수제버거", "이삭토스트", "회", 
             "콩나물국밥", "순대국밥", "수육국밥", "쭈꾸미삼겹 덮밥", "토마토 파스타", "샐러드", "오꼬노미야끼", "육회 덮밥"};
 
         public MenuRecommend()
@@ -39,7 +37,7 @@ namespace MultiChatServer
             url += "&numOfRows=1000";
             url += "&dataType=XML";
             url += "&base_date=20230511"; //당일 날짜
-            url += "&base_time=0900"; //시간
+            url += "&base_time=1200"; //시간
             url += "&nx=62"; //경기도 성남시 시흥동의 경우 격자 X는 62, 격자 Y는 124
             url += "&ny=124";
 
@@ -72,16 +70,16 @@ namespace MultiChatServer
                 {
                     foreach (XmlNode node1 in xmlList)  // <item> 값 읽어 들이기
                     {
-                        if (node1["category"].InnerText.Equals("T1H"))  //기온
+                        if (node1["category"].InnerText.Equals("T1H"))  // 기온
                         {
                             tmp = double.Parse(node1["obsrValue"].InnerText);
-                            Console.WriteLine("기온은 {0}", tmp);
+                            Console.WriteLine("{0}", tmp);
                         }
 
-                        if (node1["category"].InnerText.Equals("PTY"))  //강수형태
+                        if (node1["category"].InnerText.Equals("PTY"))  // 강수
                         {
-                            precipitation = int.Parse(node1["obsrValue"].InnerText);
-                            Console.WriteLine("강수형태는 {0}", precipitation);
+                            precipitation = double.Parse(node1["obsrValue"].InnerText);
+                            Console.WriteLine("{0}",precipitation);
                             /*
                             switch (double.Parse(node1["obsrValue"].InnerText))
                             {
@@ -97,12 +95,6 @@ namespace MultiChatServer
                             }
                             */
                         }
-
-                        if (node1["category"].InnerText.Equals("REH"))  //습도
-                        {
-                            humidity = int.Parse(node1["obsrValue"].InnerText);
-                            Console.WriteLine("습도는 {0}", humidity);
-                        }
                     }
                 }
             }
@@ -117,7 +109,7 @@ namespace MultiChatServer
 
         public void Recommend()
         {
-
+            
         }
 
     }

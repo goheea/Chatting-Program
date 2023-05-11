@@ -45,10 +45,8 @@ namespace ChatClient
             }
             btn_Login.Enabled = false;
             txt_user.Enabled = false;
-            pictureBox1.Enabled = false;
-            textBox1.Enabled = false;
 
-            byte[] buffer = Encoding.Unicode.GetBytes("Login$" + txt_user.Text + CR + LF);
+            byte[] buffer = Encoding.Unicode.GetBytes("Login$"+ txt_user.Text + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
 
@@ -85,15 +83,15 @@ namespace ChatClient
 
         private void btn_Logout_Click(object sender, EventArgs e)
         {
-
+            
             byte[] buffer = Encoding.Unicode.GetBytes("exit" + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
             bThreadExit = true;
-            Thread.Sleep(1000);
+            Thread.Sleep(1000);            
 
             Application.Exit();
-
+            
         }
 
         private void btn_Send_Click(object sender, EventArgs e)
@@ -111,10 +109,7 @@ namespace ChatClient
 
         private void button1_Click(object sender, EventArgs e)
         {
-            byte[] buffer = Encoding.Unicode.GetBytes("pictures" + CR + LF);
-            stream.Write(buffer, 0, buffer.Length);
-            stream.Flush();
-            txt_message.Text = "";
+
         }
     }
 }
