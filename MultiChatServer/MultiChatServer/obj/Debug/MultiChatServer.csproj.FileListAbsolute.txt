@@ -19,3 +19,14 @@ D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프�
 D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CoreCompileInputs.cache
 D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.exe
 D:\Workspace\신규사업\교육사업\한국정보보호산업협회\채팅프로그램\다섯번째 프로그램\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.pdb
+C:\Users\gmldk\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.exe.config
+C:\Users\gmldk\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.exe
+C:\Users\gmldk\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.pdb
+C:\Users\gmldk\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.AssemblyReference.cache
+C:\Users\gmldk\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.SuggestedBindingRedirects.cache
+C:\Users\gmldk\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.Form1.resources
+C:\Users\gmldk\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.Properties.Resources.resources
+C:\Users\gmldk\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.GenerateResource.cache
+C:\Users\gmldk\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CoreCompileInputs.cache
+C:\Users\gmldk\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.exe
+C:\Users\gmldk\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.pdb
