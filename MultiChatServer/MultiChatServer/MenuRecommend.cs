@@ -110,7 +110,7 @@ namespace MultiChatServer
 
         }
 
-        public void Recommend()
+        public string Recommend()
         {
             //강수형태 없음(0), 기온이 4℃ 이하일 시, hot_menu 랜덤 추출
             if (PTY == 0 && T1H <= 4)
@@ -235,7 +235,7 @@ namespace MultiChatServer
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
             }
-
+            return menu_result;
 
         }
 
