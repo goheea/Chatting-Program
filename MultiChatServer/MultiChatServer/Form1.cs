@@ -85,6 +85,7 @@ namespace MultiChatServer
             }
 
             menurecommend = new MenuRecommend();
+            menurecommend.Recommend();
             multiServer = new ServerProgram(serverPort);
             multiServer.OnConnect += clientConnected;
             multiServer.OnDisconnect += clientDisconncted;
