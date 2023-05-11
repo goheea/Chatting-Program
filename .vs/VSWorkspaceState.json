@@ -2,8 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\ChatClient",
-    "\\ChatClient\\ChatClient",
-    "\\MultiChatServer\\MultiChatServer"
+    "\\ChatClient\\ChatClient"
   ],
   "SelectedNode": "\\ChatClient\\ChatClient\\Program.cs",
   "PreviewInSolutionExplorer": false
