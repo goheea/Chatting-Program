@@ -41,3 +41,14 @@ C:\Users\Admin\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClie
 C:\Users\Admin\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.exe
 C:\Users\Admin\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.pdb
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\bin\Debug\ChatClient.exe.config
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\bin\Debug\ChatClient.exe
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\bin\Debug\ChatClient.pdb
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.AssemblyReference.cache
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.SuggestedBindingRedirects.cache
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.Form1.resources
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.Properties.Resources.resources
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.GenerateResource.cache
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.CoreCompileInputs.cache
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.exe
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.pdb

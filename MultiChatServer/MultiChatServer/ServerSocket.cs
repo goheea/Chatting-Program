@@ -104,15 +104,24 @@ namespace MultiChatServer
                     if ("pictures".Equals(msg, StringComparison.OrdinalIgnoreCase))
                     {
                         string imagePath = "C:\\pic\\333.jpg";
-
-                        byte[] imageBytes = File.ReadAllBytes(imagePath);
-
-                        // 이미지 데이터 전송
-                        int imageSize = imageBytes.Length;
-                        byte[] sizeBytes = BitConverter.GetBytes(imageSize);
-                        socket.Send(sizeBytes, sizeBytes.Length, SocketFlags.None);
-                        socket.Send(imageBytes, imageSize, SocketFlags.None);
-
+                        try
+                        {
+                            byte[] imageBytes = File.ReadAllBytes(imagePath);
+                            Console.WriteLine("image내용" + imageBytes);
+                            // 이미지 데이터 전송
+                            int imageSize = imageBytes.Length;
+                            byte[] sizeBytes = BitConverter.GetBytes(imageSize);
+                            socket.Send(sizeBytes, sizeBytes.Length, SocketFlags.None);
+                            socket.Send(imageBytes, imageSize, SocketFlags.None);
+                        }
+                        catch (IOException ex)
+                        {
+                            Console.WriteLine($"Error reading image file: {ex.Message}");
+                        }
+                        catch (SocketException ex)
+                        {
+                            Console.WriteLine($"Error sending image data: {ex.Message}");
+                        }
                     }
 
                     // 버퍼를 비운다.

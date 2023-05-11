@@ -39,13 +39,13 @@ namespace ChatClient
             this.txt_ServerIP = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.btn_Send = new System.Windows.Forms.Button();
             this.txt_message = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.rt_Message = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -157,17 +157,6 @@ namespace ChatClient
             this.panel2.Size = new System.Drawing.Size(746, 55);
             this.panel2.TabIndex = 1;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(542, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 30);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "메뉴 추천";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btn_Send
             // 
             this.btn_Send.Location = new System.Drawing.Point(438, 15);
@@ -223,6 +212,15 @@ namespace ChatClient
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(166, 25);
             this.textBox1.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(565, 8);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(125, 37);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
