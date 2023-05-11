@@ -36,7 +36,7 @@ namespace MultiChatServer
             url += "&pageNo=1";
             url += "&numOfRows=1000";
             url += "&dataType=XML";
-            url += "&base_date=20230510"; //당일 날짜
+            url += "&base_date=20230511"; //당일 날짜
             url += "&base_time=1200"; //시간
             url += "&nx=62"; //경기도 성남시 시흥동의 경우 격자 X는 62, 격자 Y는 124
             url += "&ny=124";
