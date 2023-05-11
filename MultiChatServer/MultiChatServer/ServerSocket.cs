@@ -101,18 +101,49 @@ namespace MultiChatServer
                         return;
                     }
 
+                    //if ("pictures".Equals(msg, StringComparison.OrdinalIgnoreCase))
+                    //{
+                    //    string imagePath = "C:\\pic\\333.jpg";
+                    //    try
+                    //    {
+                    //        byte[] imageBytes = File.ReadAllBytes(imagePath);
+                    //        Console.WriteLine("image내용" + imageBytes);
+                    //        // 이미지 데이터 전송
+                    //        int imageSize = imageBytes.Length;
+                    //        byte[] sizeBytes = BitConverter.GetBytes(imageSize);
+                    //        socket.Send(sizeBytes, sizeBytes.Length, SocketFlags.None);
+                    //        socket.Send(imageBytes, imageSize, SocketFlags.None);
+                    //    }
+                    //    catch (IOException ex)
+                    //    {
+                    //        Console.WriteLine($"Error reading image file: {ex.Message}");
+                    //    }
+                    //    catch (SocketException ex)
+                    //    {
+                    //        Console.WriteLine($"Error sending image data: {ex.Message}");
+                    //    }
+                    //}
+
                     if ("pictures".Equals(msg, StringComparison.OrdinalIgnoreCase))
                     {
                         string imagePath = "C:\\pic\\333.jpg";
                         try
                         {
-                            byte[] imageBytes = File.ReadAllBytes(imagePath);
-                            Console.WriteLine("image내용" + imageBytes);
+                            byte[] picture_initial = new byte[] { 1, 255, 1, 255 };
+                            byte[] imageBytes = File.ReadAllBytes(imagePath);       //중요
+                            byte[] newArray = new byte[picture_initial.Length + imageBytes.Length];
+                            Array.Copy(picture_initial, newArray, picture_initial.Length);
+                            Array.Copy(imageBytes, 0, newArray, picture_initial.Length, imageBytes.Length);
+                            foreach (byte b in newArray)
+                            {
+                                Console.Write(b + " ");
+                            }
                             // 이미지 데이터 전송
-                            int imageSize = imageBytes.Length;
+                            int imageSize = newArray.Length;
                             byte[] sizeBytes = BitConverter.GetBytes(imageSize);
                             socket.Send(sizeBytes, sizeBytes.Length, SocketFlags.None);
-                            socket.Send(imageBytes, imageSize, SocketFlags.None);
+                            socket.Send(newArray, imageSize, SocketFlags.None);
+
                         }
                         catch (IOException ex)
                         {
