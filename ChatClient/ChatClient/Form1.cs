@@ -106,5 +106,10 @@ namespace ChatClient
         {
             if (e.KeyCode == Keys.Enter) btn_Send_Click(sender, e);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

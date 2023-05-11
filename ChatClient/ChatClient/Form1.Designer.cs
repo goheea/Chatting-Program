@@ -45,6 +45,7 @@ namespace ChatClient
             this.rt_Message = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -145,6 +146,7 @@ namespace ChatClient
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.btn_Send);
             this.panel2.Controls.Add(this.txt_message);
             this.panel2.Controls.Add(this.label4);
@@ -209,6 +211,17 @@ namespace ChatClient
             this.textBox1.Size = new System.Drawing.Size(146, 21);
             this.textBox1.TabIndex = 4;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(495, 12);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(86, 24);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "메뉴 추천";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -250,6 +263,7 @@ namespace ChatClient
         private System.Windows.Forms.Button btn_Logout;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
