@@ -14,7 +14,7 @@ namespace MultiChatServer
     internal class MenuRecommend
     {
         static HttpClient client = new HttpClient();
-        string url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"; // URL
+        string url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"; // URL, getUltraSrtNcst는 초단기실황조회
         string results = string.Empty;
         double tmp = 0;
         double precipitation = 0;
