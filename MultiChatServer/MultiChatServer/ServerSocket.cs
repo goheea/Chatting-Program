@@ -36,18 +36,18 @@ namespace MultiChatServer
                 this.socket.ReceiveAsync(this);
                 // 접속 환영 메시지
                 remoteAddr = (IPEndPoint)socket.RemoteEndPoint;
-                if(remoteAddr!=null)
+                if (remoteAddr != null)
                 {
                     //Console.WriteLine($"Client : (From: {remoteAddr.Address.ToString()}:{remoteAddr.Port}, Connection time: {DateTime.Now})");
                     //this.Send("Welcome server!\r\n>");
                 }
-                
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return;
             }
-            
+
         }
         ~Client()
         {
@@ -60,7 +60,7 @@ namespace MultiChatServer
             //sendArgs.SetBuffer(sendData, 0, sendData.Length);
             //socket.SendAsync(sendArgs);
             // Client로 메시지 전송
-            if(socket != null)     socket.Send(sendData, sendData.Length, SocketFlags.None);
+            if (socket != null) socket.Send(sendData, sendData.Length, SocketFlags.None);
         }
 
         private void Client_Completed(object sender, SocketAsyncEventArgs e)
@@ -154,19 +154,19 @@ namespace MultiChatServer
 
         private Socket socket;
         public List<Socket> clientSocketList = new List<Socket>();//클라이언트 소켓을 관리하는 리스트, 소켓과 접속 아이디를 관리하자.
-        public Dictionary<Socket,Client> clientList = new Dictionary<Socket, Client>();//클라이언트 소켓을 관리하는 리스트, 소켓과 접속 아이디를 관리하자.
+        public Dictionary<Socket, Client> clientList = new Dictionary<Socket, Client>();//클라이언트 소켓을 관리하는 리스트, 소켓과 접속 아이디를 관리하자.
 
         public Server(Socket socket)
         {
             this.socket = socket;
             base.UserToken = socket;
             // Client로부터 Accept이 되면 이벤트를 발생시킨다. (IOCP로 꺼내는 것)
-            base.Completed += Server_Completed; 
+            base.Completed += Server_Completed;
         }
 
         public void SocketClose()
         {
-            foreach(var client in clientSocketList)
+            foreach (var client in clientSocketList)
             {
                 if (client.Connected) client.Disconnect(false);
                 client.Dispose();
@@ -196,7 +196,7 @@ namespace MultiChatServer
                 e.AcceptSocket = null;
                 // Client로부터 Accept이 되면 이벤트를 발생시킨다. (IOCP로 넣는 것)
                 this.socket.AcceptAsync(e);
-                if(OnConnect != null)
+                if (OnConnect != null)
                 {
                     OnConnect(this.socket);
                 }
@@ -205,12 +205,12 @@ namespace MultiChatServer
             {
                 return;
             }
-            
+
         }
 
         private void ClientDisconnect(Socket sock)
         {
-            
+
             if (OnDisconnect != null)
                 OnDisconnect(sock);
 
@@ -225,7 +225,7 @@ namespace MultiChatServer
         }
         public void SendAllMessage(String msg)
         {
-            foreach(var client in clientList)
+            foreach (var client in clientList)
             {
                 Client c = client.Value;
                 c.Send(msg);
@@ -262,13 +262,13 @@ namespace MultiChatServer
 
                 base.AcceptAsync(serverSocket);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return;
             }
-            
+
         }
-        
+
         private void ClientRecieve(Socket sock, string msg)
         {
             if (OnReceive != null)
@@ -292,11 +292,11 @@ namespace MultiChatServer
             if (_disposed) return;
             try
             {
-                if(serverSocket != null)
+                if (serverSocket != null)
                 {
                     serverSocket.SocketClose();
                     base.Disconnect(true);
-                    
+
                     base.Shutdown(SocketShutdown.Both);
                     base.Close();
                     base.Dispose();
@@ -305,7 +305,7 @@ namespace MultiChatServer
                 }
                 //serverSocket = null;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //
             }
