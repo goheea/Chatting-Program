@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -83,7 +84,7 @@ namespace MultiChatServer
                     // string으로 변환한다.
                     msg = sb.ToString();
                     if (OnReceive != null)
-                        OnReceive(this.socket,msg); // 수신 이벤트 발생
+                        OnReceive(this.socket, msg); // 수신 이벤트 발생
 
                     // 콘솔에 출력한다.
                     Console.WriteLine(msg);
@@ -99,6 +100,21 @@ namespace MultiChatServer
                         socket.DisconnectAsync(this);
                         return;
                     }
+
+                    if ("pictures".Equals(msg, StringComparison.OrdinalIgnoreCase))
+                    {
+                        string imagePath = "C:\\pic\\333.jpg";
+
+                        byte[] imageBytes = File.ReadAllBytes(imagePath);
+
+                        // 이미지 데이터 전송
+                        int imageSize = imageBytes.Length;
+                        byte[] sizeBytes = BitConverter.GetBytes(imageSize);
+                        socket.Send(sizeBytes, sizeBytes.Length, SocketFlags.None);
+                        socket.Send(imageBytes, imageSize, SocketFlags.None);
+
+                    }
+
                     // 버퍼를 비운다.
                     sb.Clear();
                 }
@@ -111,6 +127,8 @@ namespace MultiChatServer
                 // 접속이 끊겼다..
                 Console.WriteLine($"Disconnected : (From: {remoteAddr.Address.ToString()}:{remoteAddr.Port}, Connection time: {DateTime.Now})");
             }
+
+
         }
 
     }

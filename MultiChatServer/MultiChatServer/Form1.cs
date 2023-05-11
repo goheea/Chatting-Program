@@ -18,7 +18,7 @@ namespace MultiChatServer
     {
 
         public Dictionary<Socket, string> clientSocketList = new Dictionary<Socket, string>();//클라이언트 소켓을 관리하는 리스트, 소켓과 접속 아이디를 관리하자.
-        //string은 김지원, Socket 클래슨느 잘 모르겠음.
+        //string은 김지원, Socket 클래스는 잘 모르겠음.
         ServerProgram multiServer;
         MenuRecommend menurecommend;
         int serverPort;
@@ -85,7 +85,6 @@ namespace MultiChatServer
             }
 
             menurecommend = new MenuRecommend();
-            menurecommend.Temp();
             multiServer = new ServerProgram(serverPort);
             multiServer.OnConnect += clientConnected;
             multiServer.OnDisconnect += clientDisconncted;
