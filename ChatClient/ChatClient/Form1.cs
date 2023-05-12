@@ -21,6 +21,7 @@ namespace ChatClient
         private static char CR = (char)0x0D;
         private static char LF = (char)0x0A;
         bool bThreadExit = false;
+        string menuresult = "";
 
         public Form1()
         {
@@ -66,7 +67,16 @@ namespace ChatClient
                 byte[] buffer = new byte[BUFFERSIZE];
                 int bytes = stream.Read(buffer, 0, buffer.Length);
                 string message = Encoding.Unicode.GetString(buffer, 0, bytes);
-                DisplayText(message);
+                Console.WriteLine("메시지는 {0}", message);
+                if(message.Contains("메뉴 추천 버튼 클릭"))
+                {
+                    menuresult = message.Remove(0, 27);
+                    DisplayMenuText(menuresult);
+                }
+                else
+                {
+                    DisplayText(message);
+                }
             }
         }
 
@@ -81,6 +91,19 @@ namespace ChatClient
             }
             else
                 rt_Message.AppendText(message + Environment.NewLine);
+        }
+
+        private void DisplayMenuText(string message)
+        {
+            if (textBox1.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+            {
+                textBox1.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
+                {
+                    textBox1.AppendText(message + Environment.NewLine);
+                }));
+            }
+            else
+                textBox1.AppendText(message + Environment.NewLine);
         }
 
         private void btn_Logout_Click(object sender, EventArgs e)
@@ -111,10 +134,10 @@ namespace ChatClient
 
         private void button1_Click(object sender, EventArgs e)
         {
-            byte[] buffer = Encoding.Unicode.GetBytes("pictures" + CR + LF);
+            byte[] buffer = Encoding.Unicode.GetBytes("메뉴 추천 버튼 클릭$" + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
-            txt_message.Text = "";
+            textBox1.Text = "";
         }
     }
 }

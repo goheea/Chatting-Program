@@ -16,7 +16,7 @@ namespace MultiChatServer
         // 메시지를 모으기 위한 버퍼
         private StringBuilder sb = new StringBuilder();
         private IPEndPoint remoteAddr;
-
+        MenuRecommend menurecommend = new MenuRecommend();
         public delegate void ClientReceiveHandler(Socket sock, String msg); //수신 메시지 이벤트를 위한 델리게이트
         public event ClientReceiveHandler OnReceive;
         public delegate void ClientDisconnectHandler(Socket sock);
@@ -62,7 +62,6 @@ namespace MultiChatServer
             // Client로 메시지 전송
             if(socket != null)     socket.Send(sendData, sendData.Length, SocketFlags.None);
         }
-
         private void Client_Completed(object sender, SocketAsyncEventArgs e)
         {
             // 접속이 연결되어 있으면...
@@ -84,7 +83,13 @@ namespace MultiChatServer
                     // string으로 변환한다.
                     msg = sb.ToString();
                     if (OnReceive != null)
+                    {
+                        if ("메뉴 추천 버튼 클릭$".Equals(msg, StringComparison.OrdinalIgnoreCase))
+                        {
+                            msg += menurecommend.Recommend();
+                        }
                         OnReceive(this.socket, msg); // 수신 이벤트 발생
+                    }
 
                     // 콘솔에 출력한다.
                     Console.WriteLine(msg);
@@ -123,8 +128,8 @@ namespace MultiChatServer
                     //        Console.WriteLine($"Error sending image data: {ex.Message}");
                     //    }
                     //}
-
-                    if ("pictures".Equals(msg, StringComparison.OrdinalIgnoreCase))
+                    /*
+                    if ("Pictures$".Equals(msg, StringComparison.OrdinalIgnoreCase))
                     {
                         string imagePath = "C:\\pic\\333.jpg";
                         try
@@ -154,7 +159,7 @@ namespace MultiChatServer
                             Console.WriteLine($"Error sending image data: {ex.Message}");
                         }
                     }
-
+                    */
                     // 버퍼를 비운다.
                     sb.Clear();
                 }
