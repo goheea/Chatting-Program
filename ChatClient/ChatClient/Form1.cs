@@ -95,6 +95,7 @@ namespace ChatClient
 
         private void DisplayMenuText(string message)
         {
+            textBox1.Text = "";
             if (textBox1.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
             {
                 textBox1.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
@@ -137,7 +138,6 @@ namespace ChatClient
             byte[] buffer = Encoding.Unicode.GetBytes("메뉴 추천 버튼 클릭$" + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
-            textBox1.Text = "";
         }
     }
 }
