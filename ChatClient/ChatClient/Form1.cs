@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace ChatClient
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MetroForm
     {
         TcpClient clientSocket; // 소켓
         NetworkStream stream = default(NetworkStream);
@@ -135,9 +136,16 @@ namespace ChatClient
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Point parentPoint = this.Location;
+            Form2 newform2 = new Form2();
+            newform2.StartPosition = FormStartPosition.Manual;
+            newform2.Location = new Point(parentPoint.X + 625, parentPoint.Y + 50);
+            newform2.Show();
+            /*
             byte[] buffer = Encoding.Unicode.GetBytes("메뉴 추천 버튼 클릭$" + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
+           */
         }
     }
 }

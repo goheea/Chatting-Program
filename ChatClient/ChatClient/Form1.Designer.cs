@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace ChatClient
 {
     partial class Form1
@@ -62,10 +64,10 @@ namespace ChatClient
             this.panel1.Controls.Add(this.txt_ServerIP);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(20, 60);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(746, 100);
+            this.panel1.Size = new System.Drawing.Size(706, 100);
             this.panel1.TabIndex = 0;
             // 
             // btn_Logout
@@ -97,7 +99,7 @@ namespace ChatClient
             this.txt_user.Name = "txt_user";
             this.txt_user.Size = new System.Drawing.Size(100, 25);
             this.txt_user.TabIndex = 5;
-            this.txt_user.Text = "김지원";
+            this.txt_user.Text = "";
             // 
             // label3
             // 
@@ -106,7 +108,7 @@ namespace ChatClient
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 15);
             this.label3.TabIndex = 4;
-            this.label3.Text = "사용자명";
+            this.label3.Text = "닉네임";
             // 
             // txt_Port
             // 
@@ -151,19 +153,20 @@ namespace ChatClient
             this.panel2.Controls.Add(this.txt_message);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 395);
+            this.panel2.Location = new System.Drawing.Point(20, 375);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(746, 55);
+            this.panel2.Size = new System.Drawing.Size(706, 55);
             this.panel2.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(565, 8);
+            this.button1.Location = new System.Drawing.Point(550, 15);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 37);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 30);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "메뉴추천";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -199,35 +202,35 @@ namespace ChatClient
             // rt_Message
             // 
             this.rt_Message.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rt_Message.Location = new System.Drawing.Point(0, 100);
+            this.rt_Message.Location = new System.Drawing.Point(20, 160);
             this.rt_Message.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rt_Message.Name = "rt_Message";
-            this.rt_Message.Size = new System.Drawing.Size(746, 295);
+            this.rt_Message.Size = new System.Drawing.Size(706, 215);
             this.rt_Message.TabIndex = 2;
             this.rt_Message.Text = "";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(537, 142);
+            this.pictureBox1.Location = new System.Drawing.Point(458, 240);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(167, 154);
+            this.pictureBox1.Size = new System.Drawing.Size(210, 180);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(537, 324);
+            this.textBox1.Location = new System.Drawing.Point(458, 428);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(166, 25);
+            this.textBox1.Size = new System.Drawing.Size(210, 25);
             this.textBox1.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(746, 450);
+            this.ClientSize = new System.Drawing.Size(710, 641);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.rt_Message);
@@ -235,7 +238,8 @@ namespace ChatClient
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -243,6 +247,11 @@ namespace ChatClient
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
 
