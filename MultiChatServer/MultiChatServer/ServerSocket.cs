@@ -12,6 +12,8 @@ namespace MultiChatServer
         // 메시지는 개행으로 구분한다.
         private static char CR = (char)0x0D;
         private static char LF = (char)0x0A;
+        string url_base = "https://github.com/goheea/MiniServer/blob/main/";
+        string tmp = "";
         private Socket socket;
         // 메시지를 모으기 위한 버퍼
         private StringBuilder sb = new StringBuilder();
@@ -36,18 +38,18 @@ namespace MultiChatServer
                 this.socket.ReceiveAsync(this);
                 // 접속 환영 메시지
                 remoteAddr = (IPEndPoint)socket.RemoteEndPoint;
-                if(remoteAddr!=null)
+                if (remoteAddr != null)
                 {
                     //Console.WriteLine($"Client : (From: {remoteAddr.Address.ToString()}:{remoteAddr.Port}, Connection time: {DateTime.Now})");
                     //this.Send("Welcome server!\r\n>");
                 }
-                
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return;
             }
-            
+
         }
         ~Client()
         {
@@ -60,7 +62,7 @@ namespace MultiChatServer
             //sendArgs.SetBuffer(sendData, 0, sendData.Length);
             //socket.SendAsync(sendArgs);
             // Client로 메시지 전송
-            if(socket != null)     socket.Send(sendData, sendData.Length, SocketFlags.None);
+            if (socket != null) socket.Send(sendData, sendData.Length, SocketFlags.None);
         }
         private void Client_Completed(object sender, SocketAsyncEventArgs e)
         {
@@ -87,7 +89,14 @@ namespace MultiChatServer
                         if ("메뉴 추천 버튼 클릭$".Equals(msg, StringComparison.OrdinalIgnoreCase))
                         {
                             msg += menurecommend.Recommend();
+                            msg += "$";
+                            tmp = url_base;
+                            tmp += menurecommend.findIndex() + 1;
+                            tmp += ".jpg?raw=true";
+                            msg += tmp;
+                            tmp = "";
                         }
+                        Console.WriteLine(msg);
                         OnReceive(this.socket, msg); // 수신 이벤트 발생
                     }
 
@@ -106,60 +115,6 @@ namespace MultiChatServer
                         return;
                     }
 
-                    //if ("pictures".Equals(msg, StringComparison.OrdinalIgnoreCase))
-                    //{
-                    //    string imagePath = "C:\\pic\\333.jpg";
-                    //    try
-                    //    {
-                    //        byte[] imageBytes = File.ReadAllBytes(imagePath);
-                    //        Console.WriteLine("image내용" + imageBytes);
-                    //        // 이미지 데이터 전송
-                    //        int imageSize = imageBytes.Length;
-                    //        byte[] sizeBytes = BitConverter.GetBytes(imageSize);
-                    //        socket.Send(sizeBytes, sizeBytes.Length, SocketFlags.None);
-                    //        socket.Send(imageBytes, imageSize, SocketFlags.None);
-                    //    }
-                    //    catch (IOException ex)
-                    //    {
-                    //        Console.WriteLine($"Error reading image file: {ex.Message}");
-                    //    }
-                    //    catch (SocketException ex)
-                    //    {
-                    //        Console.WriteLine($"Error sending image data: {ex.Message}");
-                    //    }
-                    //}
-                    /*
-                    if ("Pictures$".Equals(msg, StringComparison.OrdinalIgnoreCase))
-                    {
-                        string imagePath = "C:\\pic\\333.jpg";
-                        try
-                        {
-                            byte[] picture_initial = new byte[] { 1, 255, 1, 255 };
-                            byte[] imageBytes = File.ReadAllBytes(imagePath);       //중요
-                            byte[] newArray = new byte[picture_initial.Length + imageBytes.Length];
-                            Array.Copy(picture_initial, newArray, picture_initial.Length);
-                            Array.Copy(imageBytes, 0, newArray, picture_initial.Length, imageBytes.Length);
-                            foreach (byte b in newArray)
-                            {
-                                Console.Write(b + " ");
-                            }
-                            // 이미지 데이터 전송
-                            int imageSize = newArray.Length;
-                            byte[] sizeBytes = BitConverter.GetBytes(imageSize);
-                            socket.Send(sizeBytes, sizeBytes.Length, SocketFlags.None);
-                            socket.Send(newArray, imageSize, SocketFlags.None);
-
-                        }
-                        catch (IOException ex)
-                        {
-                            Console.WriteLine($"Error reading image file: {ex.Message}");
-                        }
-                        catch (SocketException ex)
-                        {
-                            Console.WriteLine($"Error sending image data: {ex.Message}");
-                        }
-                    }
-                    */
                     // 버퍼를 비운다.
                     sb.Clear();
                 }
@@ -190,19 +145,19 @@ namespace MultiChatServer
 
         private Socket socket;
         public List<Socket> clientSocketList = new List<Socket>();//클라이언트 소켓을 관리하는 리스트, 소켓과 접속 아이디를 관리하자.
-        public Dictionary<Socket,Client> clientList = new Dictionary<Socket, Client>();//클라이언트 소켓을 관리하는 리스트, 소켓과 접속 아이디를 관리하자.
+        public Dictionary<Socket, Client> clientList = new Dictionary<Socket, Client>();//클라이언트 소켓을 관리하는 리스트, 소켓과 접속 아이디를 관리하자.
 
         public Server(Socket socket)
         {
             this.socket = socket;
             base.UserToken = socket;
             // Client로부터 Accept이 되면 이벤트를 발생시킨다. (IOCP로 꺼내는 것)
-            base.Completed += Server_Completed; 
+            base.Completed += Server_Completed;
         }
 
         public void SocketClose()
         {
-            foreach(var client in clientSocketList)
+            foreach (var client in clientSocketList)
             {
                 if (client.Connected) client.Disconnect(false);
                 client.Dispose();
@@ -232,7 +187,7 @@ namespace MultiChatServer
                 e.AcceptSocket = null;
                 // Client로부터 Accept이 되면 이벤트를 발생시킨다. (IOCP로 넣는 것)
                 this.socket.AcceptAsync(e);
-                if(OnConnect != null)
+                if (OnConnect != null)
                 {
                     OnConnect(this.socket);
                 }
@@ -241,12 +196,12 @@ namespace MultiChatServer
             {
                 return;
             }
-            
+
         }
 
         private void ClientDisconnect(Socket sock)
         {
-            
+
             if (OnDisconnect != null)
                 OnDisconnect(sock);
 
@@ -261,7 +216,7 @@ namespace MultiChatServer
         }
         public void SendAllMessage(String msg)
         {
-            foreach(var client in clientList)
+            foreach (var client in clientList)
             {
                 Client c = client.Value;
                 c.Send(msg);
@@ -298,13 +253,13 @@ namespace MultiChatServer
 
                 base.AcceptAsync(serverSocket);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return;
             }
-            
+
         }
-        
+
         private void ClientRecieve(Socket sock, string msg)
         {
             if (OnReceive != null)
@@ -328,11 +283,11 @@ namespace MultiChatServer
             if (_disposed) return;
             try
             {
-                if(serverSocket != null)
+                if (serverSocket != null)
                 {
                     serverSocket.SocketClose();
                     base.Disconnect(true);
-                    
+
                     base.Shutdown(SocketShutdown.Both);
                     base.Close();
                     base.Dispose();
@@ -341,7 +296,7 @@ namespace MultiChatServer
                 }
                 //serverSocket = null;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //
             }

@@ -23,7 +23,7 @@ namespace MultiChatServer
         MenuRecommend menurecommend;
         int serverPort;
 
-        public Form1() 
+        public Form1()
         {
             InitializeComponent();
 
@@ -85,27 +85,29 @@ namespace MultiChatServer
             }
 
             menurecommend = new MenuRecommend();
+            menurecommend.findIndex();
             multiServer = new ServerProgram(serverPort);
             multiServer.OnConnect += clientConnected;
             multiServer.OnDisconnect += clientDisconncted;
-            multiServer.OnReceive += clientReceive;               
-            
+            multiServer.OnReceive += clientReceive;
+
         }
 
         private void clientReceive(Socket sock, String msg)
         {
             int index = msg.IndexOf("$");
             String curDate = DateTime.Now.ToString("HH:mm:ss"); // 현재 날짜 받기
-            String stCmd="";
-            String stData="";
+            String stCmd = "";
+            String stData = "";
             String sendMsg = "";
+            string image_url = "";
             if (index > 0)
             {
                 stCmd = msg.Substring(0, index); //$를 기준으로 앞 부분을 cmd로 
                 stData = msg.Substring(index + 1);
-                
+
             }
-            if(stCmd.ToUpper() =="Login".ToUpper())
+            if (stCmd.ToUpper() == "Login".ToUpper())
             {
                 clientSocketList[sock] = stData; // Login 사용자명 셋팅
                 sendMsg = "[ " + curDate + " ] " + stData + "님이 입장하셨습니다.";
@@ -117,7 +119,17 @@ namespace MultiChatServer
             if (stCmd != "")
             {
                 displayMessage(sendMsg);
-                if (multiServer != null) multiServer.SendMessage(sendMsg);
+                if (multiServer != null)
+                {
+                    if (stCmd.Contains("메뉴 추천 버튼 클릭"))
+                    {
+                        multiServer.SendMessage(msg);
+                    }
+                    else
+                    {
+                        multiServer.SendMessage(sendMsg);
+                    }
+                }
             }
 
         }
