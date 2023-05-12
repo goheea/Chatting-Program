@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\ChatClient",
-    "\\ChatClient\\ChatClient"
+    ""
   ],
-  "SelectedNode": "\\ChatClient\\ChatClient\\Program.cs",
+  "SelectedNode": "\\ChatClient.sln",
   "PreviewInSolutionExplorer": false
 }

@@ -48,7 +48,7 @@
             this.startbutton.TabIndex = 3;
             this.startbutton.Text = "추천 받기";
             this.startbutton.UseVisualStyleBackColor = false;
-            this.startbutton.Click += new System.EventHandler(this.button1_Click);
+            this.startbutton.Click += new System.EventHandler(this.startbutton_Click);
             // 
             // exitbutton
             // 
@@ -61,7 +61,7 @@
             this.exitbutton.TabIndex = 5;
             this.exitbutton.Text = "종료";
             this.exitbutton.UseVisualStyleBackColor = true;
-            this.exitbutton.Click += new System.EventHandler(this.button2_Click);
+            this.exitbutton.Click += new System.EventHandler(this.exitbutton_Click);
             // 
             // metroUserControl1
             // 

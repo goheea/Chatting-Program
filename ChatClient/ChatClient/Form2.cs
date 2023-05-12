@@ -27,14 +27,14 @@ namespace ChatClient
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void startbutton_Click(object sender, EventArgs e)
         {
             byte[] buffer = Encoding.Unicode.GetBytes("pictures" + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void exitbutton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
