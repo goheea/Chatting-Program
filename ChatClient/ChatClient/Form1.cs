@@ -74,7 +74,7 @@ namespace ChatClient
                 Console.WriteLine("메시지는 {0}", message);
                 if (message.Contains("메뉴 추천 버튼 클릭"))
                 {
-                    menuresult = message.Remove(0, 27);
+                    menuresult = message.Remove(0, 12);
                     tmp = menuresult;
                     menuresult = menuresult.Remove(menuresult.IndexOf("$"));
                     menuimage = tmp.Remove(0, tmp.IndexOf("$") + 1);
