@@ -1,5 +1,4 @@
-﻿using MetroFramework.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,10 +9,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net; //WebClient
+using System.IO; //MemoryStream
 
 namespace ChatClient
 {
-    public partial class Form1 : MetroForm
+    public partial class Form1 : Form
     {
         TcpClient clientSocket; // 소켓
         NetworkStream stream = default(NetworkStream);
@@ -23,6 +24,8 @@ namespace ChatClient
         private static char LF = (char)0x0A;
         bool bThreadExit = false;
         string menuresult = "";
+        string menuimage = "";
+        string tmp = "";
 
         public Form1()
         {
@@ -69,10 +72,14 @@ namespace ChatClient
                 int bytes = stream.Read(buffer, 0, buffer.Length);
                 string message = Encoding.Unicode.GetString(buffer, 0, bytes);
                 Console.WriteLine("메시지는 {0}", message);
-                if(message.Contains("메뉴 추천 버튼 클릭"))
+                if (message.Contains("메뉴 추천 버튼 클릭"))
                 {
-                    menuresult = message.Remove(0, 27);
+                    menuresult = message.Remove(0, 12);
+                    tmp = menuresult;
+                    menuresult = menuresult.Remove(menuresult.IndexOf("$"));
+                    menuimage = tmp.Remove(0, tmp.IndexOf("$") + 1);
                     DisplayMenuText(menuresult);
+                    DisplayMenuImage(menuimage);
                 }
                 else
                 {
@@ -96,16 +103,32 @@ namespace ChatClient
 
         private void DisplayMenuText(string message)
         {
-            textBox1.Text = "";
             if (textBox1.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
             {
                 textBox1.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
                 {
-                    textBox1.AppendText(message + Environment.NewLine);
+                    textBox1.Text = message;
                 }));
             }
             else
-                textBox1.AppendText(message + Environment.NewLine);
+                textBox1.Text = message;
+        }
+
+        private void DisplayMenuImage(string message)
+        {
+            if (pictureBox1.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+            {
+                pictureBox1.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
+                {
+                    pictureBox1.ImageLocation = message;
+                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                }));
+            }
+            else
+            {
+                pictureBox1.ImageLocation = message;
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
         }
 
         private void btn_Logout_Click(object sender, EventArgs e)
@@ -136,16 +159,16 @@ namespace ChatClient
 
         private void button1_Click(object sender, EventArgs e)
         {
+            /*
             Point parentPoint = this.Location;
             Form2 newform2 = new Form2();
             newform2.StartPosition = FormStartPosition.Manual;
             newform2.Location = new Point(parentPoint.X + 625, parentPoint.Y + 50);
             newform2.Show();
-            /*
+            */
             byte[] buffer = Encoding.Unicode.GetBytes("메뉴 추천 버튼 클릭$" + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
-           */
         }
     }
 }

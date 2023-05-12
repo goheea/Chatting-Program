@@ -21,7 +21,7 @@ namespace MultiChatServer
         public int precipitation = 0; //강수형태
         public int humidity = 0; //습도
         string[] all_menu = new string[] {"부대찌개", "순두부찌개", "김치찌개", "돈코츠라멘", "미소라멘", "소유라멘", "김치카츠나베",
-            "곰탕", "우거지탕", "설렁탕", "나가사키짬뽕", "해물짬뽕", "쌀국수", "샤브샤브", "해물탕", "알탕", "조개탕", "오뎅탕", "삼계탕",
+            "곰탕", "우거지탕", "설렁탕", "나가사키짬뽕", "해물짬뽕", "쌀국수", "샤브샤브", "해물탕", "알탕", "조개탕", "감자탕", "오뎅탕", "삼계탕",
             "갈비탕", "콩나물국밥", "순대국", "수육국밥", "해장국", "밀푀유나베", "우동", "해물파전", "김치전", "감자전", "칼국수", "수제비",
             "회덮밥", "연어덮밥", "육회비빔밥", "함흥냉면", "평양냉면", "막국수", "모둠초밥", "회전초밥", "회", "샐러드", "포케", "족발",
             "불족발", "보쌈", "간장찜닭", "매운찜닭", "로제찜닭", "쟁반짜장", "간짜장", "탕수육", "꿔바로우", "쭈꾸미볶음", "오징어볶음",
@@ -29,21 +29,21 @@ namespace MultiChatServer
             "규동", "삼겹살덮밥", "가츠동", "텐동", "스테이크덮밥", "쭈꾸미덮밥", "김치볶음밥", "꼬막비빔밥", "양장피", "유산슬", "국수",
             "카레돈가스", "등심돈가스", "피자", "서브웨이", "스테이크", "떡볶이", "로제떡볶이", "알리오올리오", "로제파스타", "크림파스타",
             "토마토파스타", "후라이드치킨", "양념치킨", "간장치킨", "생선구이", "코다리조림", "쪽갈비", "삼겹살", "양념갈비", "한우",
-            "샌드위치", "햄버거", "돈코츠라멘", "김치카츠나베", "해물파전", "김치전", "감자전", "후라이드치킨", "양념치킨", "간장치킨",
-            "탕수육", "꿔바로우", "카레돈가스", "등심돈가스", "가츠동", "텐동"};
+            "샌드위치", "햄버거"};
         string[] hot_menu = new string[] { "부대찌개", "순두부찌개", "김치찌개", "돈코츠라멘", "미소라멘", "소유라멘", "김치카츠나베",
-            "곰탕", "우거지탕", "설렁탕", "나가사키짬뽕", "해물짬뽕", "쌀국수", "샤브샤브", "대구탕", "알탕", "조개탕",
+            "곰탕", "우거지탕", "설렁탕", "나가사키짬뽕", "해물짬뽕", "쌀국수", "샤브샤브", "해물탕", "알탕", "조개탕", "감자탕",
             "오뎅탕", "삼계탕", "갈비탕", "콩나물국밥", "순대국", "수육국밥", "해장국", "밀푀유나베", "우동"};
         string[] rain_menu = new string[] { "해물파전", "김치전", "감자전", "칼국수", "수제비" };
         string[] cold_menu = new string[] { "회덮밥", "연어덮밥", "육회비빔밥", "함흥냉면", "평양냉면", "막국수", "모둠초밥", "회전초밥", "회", "샐러드", "포케" };
         string[] else_menu = new string[] { "족발", "불족발", "보쌈", "간장찜닭", "매운찜닭", "로제찜닭", "쟁반짜장", "간짜장", "탕수육",
             "꿔바로우", "쭈꾸미볶음", "오징어볶음", "제육볶음", "해물찜", "아구찜", "알곤찜", "대구뽈찜", "꽃게찜", "김치찜",
-            "갈비찜", "마라탕", "오꼬노미야끼", "사케동", "장어덮밥", "규동", "삼겹살덮밥", "가츠동", "텐동", "스테이크덮밥",
-            "쭈꾸미덮밥", "김치볶음밥", "꼬막비빔밥", "짜장면", "유산슬", "국수", "카레돈가스", "등심돈가스", "피자", "서브웨이",
+            "갈비찜", "마라탕", "오꼬노미야끼", "장어덮밥", "규동", "삼겹살덮밥", "가츠동", "텐동", "스테이크덮밥",
+            "쭈꾸미덮밥", "김치볶음밥", "꼬막비빔밥", "양장피", "유산슬", "국수", "카레돈가스", "등심돈가스", "피자", "서브웨이",
             "스테이크", "떡볶이", "로제떡볶이", "알리오올리오", "로제파스타", "크림파스타", "토마토파스타", "후라이드치킨",
             "양념치킨", "간장치킨", "생선구이", "코다리조림", "쪽갈비", "삼겹살", "양념갈비", "한우", "샌드위치", "햄버거"};
         string[] fry_menu = new string[] { "돈코츠라멘", "김치카츠나베", "해물파전", "김치전", "감자전", "후라이드치킨", "양념치킨",
             "간장치킨", "탕수육", "꿔바로우", "카레돈가스", "등심돈가스", "가츠동", "텐동"};
+
 
         public MenuRecommend()
         {
@@ -120,7 +120,8 @@ namespace MultiChatServer
             }
 
         }
-        ~MenuRecommend() {
+        ~MenuRecommend()
+        {
         }
 
         public string Recommend()
@@ -182,9 +183,9 @@ namespace MultiChatServer
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
             }
-            //강수형태 비, 비·눈, 소나기, 빗방울 중 하나이고, 기온이 영하 5℃ 미만일 시, hot_menu 랜덤 추출
-            //강수형태 비, 비·눈, 소나기, 빗방울 중 하나이고, 기온이 영하 5℃~4℃일 시, hot_menu + rain_menu 랜덤 추출
-            if ((precipitation == 1 || precipitation == 2 || precipitation == 4 || precipitation == 5) && tmp <= 4)
+            //강수형태 비, 소나기, 빗방울 중 하나이고, 기온이 영하 5℃ 미만일 시, hot_menu 랜덤 추출
+            //강수형태 비, 소나기, 빗방울 중 하나이고, 기온이 영하 5℃~4℃일 시, hot_menu + rain_menu 랜덤 추출
+            if ((precipitation == 1 || precipitation == 4 || precipitation == 5) && tmp <= 4)
             {
                 Random rnd = new Random();
                 string[] combined_menu;
@@ -199,41 +200,41 @@ namespace MultiChatServer
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
             }
-            //강수형태 비, 비·눈, 소나기, 빗방울 중 하나이고, 기온이 5℃~11℃일 시, hot + rain + else 랜덤 추출
-            if ((precipitation == 1 || precipitation == 2 || precipitation == 4 || precipitation == 5) && tmp >= 5 && tmp <= 11)
+            //강수형태 비, 소나기, 빗방울 중 하나이고, 기온이 5℃~11℃일 시, hot + rain + else 랜덤 추출
+            if ((precipitation == 1 || precipitation == 4 || precipitation == 5) && tmp >= 5 && tmp <= 11)
             {
                 Random rnd = new Random();
                 string[] combined_menu = hot_menu.Concat(else_menu).Concat(rain_menu).ToArray();
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
             }
-            //강수형태 비, 비·눈, 소나기, 빗방울 중 하나이고, 기온이 12℃~22℃일 시, all 랜덤 추출
-            if ((precipitation == 1 || precipitation == 2 || precipitation == 4 || precipitation == 5) && tmp >= 12 && tmp <= 22)
+            //강수형태 비, 소나기, 빗방울 중 하나이고, 기온이 12℃~22℃일 시, all 랜덤 추출
+            if ((precipitation == 1 || precipitation == 4 || precipitation == 5) && tmp >= 12 && tmp <= 22)
             {
                 Random rnd = new Random();
                 string[] combined_menu = hot_menu.Concat(else_menu).Concat(rain_menu).Concat(cold_menu).ToArray();
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
             }
-            //강수형태 비, 비·눈, 소나기, 빗방울 중 하나이고, 기온이 23℃~27℃일 시, (cold + rain + else) - fry 랜덤 추출
-            if ((precipitation == 1 || precipitation == 2 || precipitation == 4 || precipitation == 5) && tmp >= 23 && tmp <= 27)
+            //강수형태 비, 소나기, 빗방울 중 하나이고, 기온이 23℃~27℃일 시, (cold + rain + else) - fry 랜덤 추출
+            if ((precipitation == 1 || precipitation == 4 || precipitation == 5) && tmp >= 23 && tmp <= 27)
             {
                 Random rnd = new Random();
                 string[] combined_menu = cold_menu.Concat(else_menu).Concat(rain_menu).Except(fry_menu).ToArray();
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
             }
-            //강수형태 비, 비·눈, 소나기, 빗방울 중 하나이고, 기온이 28℃ 이상일 시, (cold + rain) - fry 랜덤 추출
-            if ((precipitation == 1 || precipitation == 2 || precipitation == 4 || precipitation == 5) && tmp >= 28)
+            //강수형태 비, 소나기, 빗방울 중 하나이고, 기온이 28℃ 이상일 시, (cold + rain) - fry 랜덤 추출
+            if ((precipitation == 1 || precipitation == 4 || precipitation == 5) && tmp >= 28)
             {
                 Random rnd = new Random();
                 string[] combined_menu = cold_menu.Concat(rain_menu).Except(fry_menu).ToArray();
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
             }
-            //강수형태 눈, 눈날림 중 하나이고, 기온이 영하 5℃ 이하일 시, hot_menu + else_menu 랜덤 추출
-            //강수형태 눈, 눈날림 중 하나이고, 기온이 영하 4℃ 이상일 시, hot + rain + else 랜덤 추출
-            if (precipitation == 3 || precipitation == 7)
+            //강수형태 비·눈, 눈, 빗방울·눈날림, 눈날림 중 하나이고, 기온이 영하 5℃ 이하일 시, hot_menu + else_menu 랜덤 추출
+            //강수형태 비·눈, 눈, 빗방울·눈날림, 눈날림 중 하나이고, 기온이 영하 4℃ 이상일 시, hot + rain + else 랜덤 추출
+            if (precipitation == 2 || precipitation == 3 || precipitation == 6 || precipitation == 7)
             {
                 Random rnd = new Random();
                 string[] combined_menu;
@@ -257,13 +258,15 @@ namespace MultiChatServer
             return menu_result;
         }
 
+        public int findIndex()
+        {
+            int index = Array.IndexOf(all_menu, menu_result);
+            return index;
+
+        }
 
     }
     /*string imagePath = @"C:\menu\" + image_load;
       pictureBox1.Image = Image.FromFile(imagePath);
     */
-}
-        }
-
-    }
 }
