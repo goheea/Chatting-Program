@@ -43,16 +43,19 @@ namespace MultiChatServer
             this.panel1.Controls.Add(this.txt_ServerPort);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(18, 48);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 47);
+            this.panel1.Size = new System.Drawing.Size(664, 48);
             this.panel1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(234, 13);
+            this.button1.Font = new System.Drawing.Font("AppleSDGothicNeoM00", 9.749998F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button1.Location = new System.Drawing.Point(191, 13);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(76, 26);
             this.button1.TabIndex = 2;
             this.button1.Text = "연결대기";
             this.button1.UseVisualStyleBackColor = true;
@@ -60,39 +63,45 @@ namespace MultiChatServer
             // 
             // txt_ServerPort
             // 
-            this.txt_ServerPort.Location = new System.Drawing.Point(116, 10);
+            this.txt_ServerPort.Font = new System.Drawing.Font("AppleSDGothicNeoR00", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txt_ServerPort.Location = new System.Drawing.Point(76, 13);
+            this.txt_ServerPort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_ServerPort.Name = "txt_ServerPort";
-            this.txt_ServerPort.Size = new System.Drawing.Size(100, 25);
+            this.txt_ServerPort.Size = new System.Drawing.Size(88, 23);
             this.txt_ServerPort.TabIndex = 1;
             this.txt_ServerPort.Text = "7000";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Font = new System.Drawing.Font("AppleSDGothicNeoM00", 9.749998F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(16, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 15);
+            this.label1.Size = new System.Drawing.Size(54, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "접속대기포트";
+            this.label1.Text = "접속 포트";
             // 
             // txt_Message
             // 
             this.txt_Message.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txt_Message.Location = new System.Drawing.Point(0, 47);
+            this.txt_Message.Location = new System.Drawing.Point(18, 96);
+            this.txt_Message.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_Message.Name = "txt_Message";
-            this.txt_Message.Size = new System.Drawing.Size(800, 403);
+            this.txt_Message.Size = new System.Drawing.Size(664, 248);
             this.txt_Message.TabIndex = 3;
             this.txt_Message.Text = "";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(700, 360);
             this.Controls.Add(this.txt_Message);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Padding = new System.Windows.Forms.Padding(18, 48, 18, 16);
+            this.Text = "Server";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

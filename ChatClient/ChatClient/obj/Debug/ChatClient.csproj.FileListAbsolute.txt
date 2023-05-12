@@ -91,3 +91,6 @@ C:\Users\gmldk\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClie
 C:\Users\gmldk\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.CopyComplete
 C:\Users\gmldk\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.exe
 C:\Users\gmldk\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.pdb
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\bin\Debug\MetroFramework.dll
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.CopyComplete

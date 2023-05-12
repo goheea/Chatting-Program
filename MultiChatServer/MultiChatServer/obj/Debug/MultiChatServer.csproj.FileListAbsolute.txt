@@ -52,3 +52,6 @@ C:\Users\Admin\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debu
 C:\Users\Admin\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.exe
 C:\Users\Admin\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.pdb
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MetroFramework.dll
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CopyComplete

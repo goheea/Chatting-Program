@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,7 @@ using System.IO; //MemoryStream
 
 namespace ChatClient
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MetroForm
     {
         TcpClient clientSocket; // 소켓
         NetworkStream stream = default(NetworkStream);
@@ -50,8 +51,8 @@ namespace ChatClient
             }
             btn_Login.Enabled = false;
             txt_user.Enabled = false;
-            pictureBox1.Enabled = false;
-            textBox1.Enabled = false;
+            menu_viewer.Enabled = false;
+            menu_name.Enabled = false;
 
             byte[] buffer = Encoding.Unicode.GetBytes("Login$" + txt_user.Text + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
@@ -103,31 +104,31 @@ namespace ChatClient
 
         private void DisplayMenuText(string message)
         {
-            if (textBox1.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+            if (menu_name.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
             {
-                textBox1.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
+                menu_name.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
                 {
-                    textBox1.Text = message;
+                    menu_name.Text = message;
                 }));
             }
             else
-                textBox1.Text = message;
+                menu_name.Text = message;
         }
 
         private void DisplayMenuImage(string message)
         {
-            if (pictureBox1.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+            if (menu_viewer.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
             {
-                pictureBox1.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
+                menu_viewer.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
                 {
-                    pictureBox1.ImageLocation = message;
-                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                    menu_viewer.ImageLocation = message;
+                    menu_viewer.SizeMode = PictureBoxSizeMode.StretchImage;
                 }));
             }
             else
             {
-                pictureBox1.ImageLocation = message;
-                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                menu_viewer.ImageLocation = message;
+                menu_viewer.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
 
