@@ -41,17 +41,17 @@ namespace ChatClient
             this.txt_ServerIP = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.menu_start = new System.Windows.Forms.Button();
             this.btn_Send = new System.Windows.Forms.Button();
             this.txt_message = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.menu_start = new System.Windows.Forms.Button();
             this.rt_Message = new System.Windows.Forms.RichTextBox();
             this.menu_viewer = new System.Windows.Forms.PictureBox();
             this.menu_name = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.username_title = new System.Windows.Forms.TextBox();
             this.usernameBox = new System.Windows.Forms.TextBox();
+            this.username_title = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menu_viewer)).BeginInit();
@@ -169,18 +169,6 @@ namespace ChatClient
             this.panel2.Size = new System.Drawing.Size(513, 63);
             this.panel2.TabIndex = 1;
             // 
-            // menu_start
-            // 
-            this.menu_start.Font = new System.Drawing.Font("AppleSDGothicNeoM00", 9.749998F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.menu_start.Location = new System.Drawing.Point(82, 207);
-            this.menu_start.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.menu_start.Name = "menu_start";
-            this.menu_start.Size = new System.Drawing.Size(86, 39);
-            this.menu_start.TabIndex = 9;
-            this.menu_start.Text = "메뉴추천";
-            this.menu_start.UseVisualStyleBackColor = true;
-            this.menu_start.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btn_Send
             // 
             this.btn_Send.Font = new System.Drawing.Font("AppleSDGothicNeoB00", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -213,6 +201,18 @@ namespace ChatClient
             this.label4.TabIndex = 2;
             this.label4.Text = "메시지";
             // 
+            // menu_start
+            // 
+            this.menu_start.Font = new System.Drawing.Font("AppleSDGothicNeoM00", 9.749998F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.menu_start.Location = new System.Drawing.Point(82, 207);
+            this.menu_start.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.menu_start.Name = "menu_start";
+            this.menu_start.Size = new System.Drawing.Size(86, 39);
+            this.menu_start.TabIndex = 9;
+            this.menu_start.Text = "메뉴추천";
+            this.menu_start.UseVisualStyleBackColor = true;
+            this.menu_start.Click += new System.EventHandler(this.button1_Click);
+            // 
             // rt_Message
             // 
             this.rt_Message.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -238,7 +238,6 @@ namespace ChatClient
             this.menu_name.Font = new System.Drawing.Font("AppleSDGothicNeoB00", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.menu_name.Location = new System.Drawing.Point(30, 176);
             this.menu_name.Name = "menu_name";
-            this.menu_name.ReadOnly = false;
             this.menu_name.Size = new System.Drawing.Size(184, 21);
             this.menu_name.TabIndex = 4;
             this.menu_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -253,16 +252,15 @@ namespace ChatClient
             this.panel3.Size = new System.Drawing.Size(249, 151);
             this.panel3.TabIndex = 10;
             // 
-            // panel4
+            // usernameBox
             // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.menu_viewer);
-            this.panel4.Controls.Add(this.menu_name);
-            this.panel4.Controls.Add(this.menu_start);
-            this.panel4.Location = new System.Drawing.Point(546, 256);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(249, 259);
-            this.panel4.TabIndex = 11;
+            this.usernameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.usernameBox.Font = new System.Drawing.Font("AppleSDGothicNeoSB00", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.usernameBox.Location = new System.Drawing.Point(13, 29);
+            this.usernameBox.Multiline = true;
+            this.usernameBox.Name = "usernameBox";
+            this.usernameBox.Size = new System.Drawing.Size(219, 109);
+            this.usernameBox.TabIndex = 10;
             // 
             // username_title
             // 
@@ -277,15 +275,16 @@ namespace ChatClient
             this.username_title.Text = "접속자 리스트";
             this.username_title.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // usernameBox
+            // panel4
             // 
-            this.usernameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.usernameBox.Font = new System.Drawing.Font("AppleSDGothicNeoB00", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.usernameBox.Location = new System.Drawing.Point(13, 26);
-            this.usernameBox.Multiline = true;
-            this.usernameBox.Name = "usernameBox";
-            this.usernameBox.Size = new System.Drawing.Size(219, 116);
-            this.usernameBox.TabIndex = 10;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.menu_viewer);
+            this.panel4.Controls.Add(this.menu_name);
+            this.panel4.Controls.Add(this.menu_start);
+            this.panel4.Location = new System.Drawing.Point(546, 256);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(249, 259);
+            this.panel4.TabIndex = 11;
             // 
             // Form1
             // 
@@ -299,7 +298,7 @@ namespace ChatClient
             this.Controls.Add(this.panel4);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
-            this.Padding = new System.Windows.Forms.Padding(18, 48, 18, 16);
+            this.Padding = new System.Windows.Forms.Padding(18, 60, 18, 16);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -42,6 +42,7 @@ namespace MultiChatServer
             {
                 if (message.Equals("disConnect"))
                     sendMsg = "[ " + curDate + " ] " + username + " 님이 대화방을 나갔습니다.";
+
                 else
                     sendMsg = "[ " + curDate + " ] " + username + " : " + message;
 

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net; //WebClient
 using System.IO; //MemoryStream
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ChatClient
 {
@@ -27,6 +28,8 @@ namespace ChatClient
         string menuresult = "";
         string menuimage = "";
         string tmp = "";
+        List<string> names = new List<string>();
+        String curDate = DateTime.Now.ToString("HH:mm:ss");
 
         public Form1()
         {
@@ -61,9 +64,11 @@ namespace ChatClient
             Thread t_handler = new Thread(GetMessage);
             t_handler.IsBackground = true;
             t_handler.Start();
+
+            //usernameBox.AppendText(txt_user.Text + Environment.NewLine);
         }
 
-        private void GetMessage() //서버측에 전송하기 전 클라이언트측의 입력 데이터 가져옴
+        public void GetMessage() //서버측에 전송하기 전 클라이언트측의 입력 데이터 가져옴
         {
             while (!bThreadExit)
             {
@@ -73,6 +78,8 @@ namespace ChatClient
                 int bytes = stream.Read(buffer, 0, buffer.Length);
                 string message = Encoding.Unicode.GetString(buffer, 0, bytes);
                 Console.WriteLine("메시지는 {0}", message);
+                
+
                 if (message.Contains("메뉴 추천 버튼 클릭"))
                 {
                     menuresult = message.Remove(0, 12);
@@ -82,10 +89,46 @@ namespace ChatClient
                     DisplayMenuText(menuresult);
                     DisplayMenuImage(menuimage);
                 }
+                if (message.EndsWith("님이 입장하셨습니다."))
+                {
+                    int start = message.IndexOf(']') + 2;
+                    int end = message.IndexOf("님이");
+                    string name = message.Substring(start, end - start);
+                    names.Add(name);
+                    usernameBox.Clear();
+                    foreach (string n in names)
+                    {
+                        usernameBox.AppendText(n + Environment.NewLine);
+                    }
+                }
+                if(message.EndsWith("님이 대화방을 나갔습니다."))
+{
+                    int start = message.IndexOf(']') + 2;
+                    int end = message.IndexOf("님이");
+                    string name = message.Substring(start, end - start);
+                    names.Remove(name);
+                    usernameBox.Clear();
+                    foreach (string n in names)
+                    {
+                        usernameBox.AppendText(n + Environment.NewLine);
+                    }
+                }
+
                 else
                 {
                     DisplayText(message);
                 }
+                /*
+                string input = rt_Message.Text;
+                List<string> names = new List<string>();
+                if (input.EndsWith("님이 입장하셨습니다."))
+                {
+                    int start = input.IndexOf(']') + 2;
+                    int end = input.IndexOf("님이");
+                    string name = input.Substring(start, end - start);
+                    names.Add(name);
+                }
+                */
             }
         }
 
@@ -101,6 +144,54 @@ namespace ChatClient
             else
                 rt_Message.AppendText(message + Environment.NewLine);
         }
+
+        private void useboxClear(string message)
+        {
+            if (usernameBox.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+            {
+                usernameBox.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
+                {
+                    usernameBox.Clear();
+                    foreach (string n in names)
+                    {
+                        usernameBox.AppendText(n + Environment.NewLine);
+                    }
+                }));
+            }
+            else
+                usernameBox.Clear();
+                foreach (string n in names)
+                {
+                    usernameBox.AppendText(n + Environment.NewLine);
+                }
+        }
+        /*
+        private void Displayuserlist(string message)
+        {
+            if (rt_Message.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+            {
+                rt_Message.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
+                {
+                    usernameBox.AppendText(txt_user.Text + Environment.NewLine);
+                }));
+            }
+            else
+                usernameBox.AppendText(txt_user.Text + Environment.NewLine);
+        }
+        */
+        private void Displayusername(string message)
+        {
+            if (rt_Message.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+            {
+                rt_Message.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
+                {
+                    usernameBox.AppendText(txt_user.Text + Environment.NewLine);
+                }));
+            }
+            else
+                usernameBox.AppendText(txt_user.Text + Environment.NewLine);
+        }
+
 
         private void DisplayMenuText(string message)
         {
@@ -134,7 +225,7 @@ namespace ChatClient
 
         private void btn_Logout_Click(object sender, EventArgs e)
         {
-
+            rt_Message.AppendText("[ " + curDate + " ] " + txt_user.Text + " 님이 대화방을 나갔습니다.");
             byte[] buffer = Encoding.Unicode.GetBytes("exit" + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
