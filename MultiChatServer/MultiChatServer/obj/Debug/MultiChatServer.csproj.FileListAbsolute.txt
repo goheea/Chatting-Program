@@ -55,3 +55,17 @@ C:\Users\Admin\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debu
 C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MetroFramework.dll
 C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MetroFramework.Fonts.dll
 C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CopyComplete
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.exe.config
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.exe
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.pdb
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MetroFramework.dll
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.AssemblyReference.cache
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.SuggestedBindingRedirects.cache
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.Form1.resources
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.Properties.Resources.resources
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.GenerateResource.cache
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CoreCompileInputs.cache
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CopyComplete
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.exe
+C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.pdb

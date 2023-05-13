@@ -117,6 +117,9 @@ namespace ChatClient
                 else
                 {
                     DisplayText(message);
+                    //----------------폼2추가부분
+                    show_alert1(message);
+                    //--------------------------
                 }
                 /*
                 string input = rt_Message.Text;
@@ -129,7 +132,9 @@ namespace ChatClient
                     names.Add(name);
                 }
                 */
+                
             }
+            
         }
 
         private void DisplayText(string message)
@@ -139,6 +144,7 @@ namespace ChatClient
                 rt_Message.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
                 {
                     rt_Message.AppendText(message + Environment.NewLine);
+                    
                 }));
             }
             else
@@ -262,5 +268,39 @@ namespace ChatClient
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
         }
+
+
+        //-----------------------------------------------폼2추가 부분
+        //private void show_alert(string msg)
+        //{
+        //    Form2 alert = new Form2();
+        //    alert.ShowDialog();
+        //}
+
+        private void show_alert1(string message)
+        {
+            Form2 alert = new Form2();
+            //alert.Location = new Point();
+            if (alert.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+            {
+                alert.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
+                {
+                    alert.Show();
+
+                }));
+            }
+            else
+            {
+                alert.Show();
+                
+            }
+                
+        }
+
+
+
+        //--------------------------------------------------------------
+
+
     }
 }

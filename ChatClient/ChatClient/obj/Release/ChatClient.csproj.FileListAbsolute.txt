@@ -34,3 +34,17 @@ C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj
 C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.csproj.CopyComplete
 C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.exe
 C:\Users\jisoo\OneDrive\바탕 화면\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.pdb
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\bin\Release\ChatClient.exe.config
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\bin\Release\ChatClient.exe
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\bin\Release\ChatClient.pdb
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\bin\Release\MetroFramework.dll
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\bin\Release\MetroFramework.Fonts.dll
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.csproj.AssemblyReference.cache
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.csproj.SuggestedBindingRedirects.cache
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.Form1.resources
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.Properties.Resources.resources
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.csproj.GenerateResource.cache
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.csproj.CoreCompileInputs.cache
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.csproj.CopyComplete
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.exe
+C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Release\ChatClient.pdb
