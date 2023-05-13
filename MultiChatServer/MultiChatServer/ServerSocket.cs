@@ -1,9 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Net; //WebClient
+using System.IO; //MemoryStream
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.IO.Ports;
 
 namespace MultiChatServer
 {
@@ -56,6 +65,7 @@ namespace MultiChatServer
             socket = null;
         }
 
+        //지수지수: 바꾸기전 원본
         public void Send(String msg)
         {
             byte[] sendData = Encoding.Unicode.GetBytes(msg);
@@ -64,6 +74,21 @@ namespace MultiChatServer
             // Client로 메시지 전송
             if (socket != null) socket.Send(sendData, sendData.Length, SocketFlags.None);
         }
+        
+        /*지수지수: 바꾸기
+        public delegate void SendDelegate(string msg);
+
+        public void Send(string msg)
+        {
+            byte[] sendData = Encoding.Unicode.GetBytes(msg);
+            if (socket != null)
+            {
+                SendDelegate sendDelegate = new SendDelegate(Send);
+                socket.BeginInvoke(sendDelegate, new object[] { msg });
+            }
+        }
+        */
+
         private void Client_Completed(object sender, SocketAsyncEventArgs e)
         {
             // 접속이 연결되어 있으면...

@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Net; //WebClient
 using System.IO; //MemoryStream
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.IO.Ports;
 
 namespace ChatClient
 {
@@ -28,6 +29,7 @@ namespace ChatClient
         string menuresult = "";
         string menuimage = "";
         string tmp = "";
+        //지수
         List<string> names = new List<string>();
         String curDate = DateTime.Now.ToString("HH:mm:ss");
 
@@ -64,8 +66,6 @@ namespace ChatClient
             Thread t_handler = new Thread(GetMessage);
             t_handler.IsBackground = true;
             t_handler.Start();
-
-            //usernameBox.AppendText(txt_user.Text + Environment.NewLine);
         }
 
         public void GetMessage() //서버측에 전송하기 전 클라이언트측의 입력 데이터 가져옴
@@ -89,52 +89,69 @@ namespace ChatClient
                     DisplayMenuText(menuresult);
                     DisplayMenuImage(menuimage);
                 }
+                
                 if (message.EndsWith("님이 입장하셨습니다."))
                 {
                     int start = message.IndexOf(']') + 2;
                     int end = message.IndexOf("님이");
                     string name = message.Substring(start, end - start);
                     names.Add(name);
-                    usernameBox.Clear();
-                    foreach (string n in names)
+
+                    if (usernameBox.InvokeRequired)
                     {
-                        usernameBox.AppendText(n + Environment.NewLine);
+                        usernameBox.BeginInvoke(new MethodInvoker(delegate
+                        {
+                            usernameBox.Clear();
+                            foreach (string n in names)
+                            {
+                                usernameBox.AppendText(n + Environment.NewLine);
+                            }
+                        }));
+                    }
+                    else
+                    {
+                        usernameBox.Clear();
+                        foreach (string n in names)
+                        {
+                            usernameBox.AppendText(n + Environment.NewLine);
+                        }
                     }
                 }
-                if(message.EndsWith("님이 대화방을 나갔습니다."))
-{
+
+
+                //지수지수
+                if (message.EndsWith("님이 대화방을 나갔습니다."))
+                {
                     int start = message.IndexOf(']') + 2;
                     int end = message.IndexOf("님이");
                     string name = message.Substring(start, end - start);
                     names.Remove(name);
-                    usernameBox.Clear();
-                    foreach (string n in names)
+                    if (usernameBox.InvokeRequired)
                     {
-                        usernameBox.AppendText(n + Environment.NewLine);
+                        usernameBox.BeginInvoke(new MethodInvoker(delegate
+                        {
+                            usernameBox.Clear();
+                            foreach (string n in names)
+                            {
+                                usernameBox.AppendText(n + Environment.NewLine);
+                            }
+                        }));
+                    }
+                    else
+                    {
+                        usernameBox.Clear();
+                        foreach (string n in names)
+                        {
+                            usernameBox.AppendText(n + Environment.NewLine);
+                        }
                     }
                 }
 
                 else
                 {
                     DisplayText(message);
-                    //----------------폼2추가부분
-                    //show_alert1(message);
-                    //--------------------------
                 }
-                /*
-                string input = rt_Message.Text;
-                List<string> names = new List<string>();
-                if (input.EndsWith("님이 입장하셨습니다."))
-                {
-                    int start = input.IndexOf(']') + 2;
-                    int end = input.IndexOf("님이");
-                    string name = input.Substring(start, end - start);
-                    names.Add(name);
-                }
-                */
-                
             }
-            
         }
 
         private void DisplayText(string message)
@@ -150,55 +167,18 @@ namespace ChatClient
             else
                 rt_Message.AppendText(message + Environment.NewLine);
         }
-
-        private void useboxClear(string message)
+        /*지수
+        private void usernameDisplay(object sender, SerialDataReceivedEventArgs e)
         {
-            if (usernameBox.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+            this.Invoke(new Action(delegate ()
             {
-                usernameBox.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
-                {
-                    usernameBox.Clear();
-                    foreach (string n in names)
-                    {
-                        usernameBox.AppendText(n + Environment.NewLine);
-                    }
-                }));
-            }
-            else
-                usernameBox.Clear();
                 foreach (string n in names)
                 {
                     usernameBox.AppendText(n + Environment.NewLine);
                 }
-        }
-        /*
-        private void Displayuserlist(string message)
-        {
-            if (rt_Message.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
-            {
-                rt_Message.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
-                {
-                    usernameBox.AppendText(txt_user.Text + Environment.NewLine);
-                }));
-            }
-            else
-                usernameBox.AppendText(txt_user.Text + Environment.NewLine);
+            }));
         }
         */
-        private void Displayusername(string message)
-        {
-            if (rt_Message.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
-            {
-                rt_Message.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
-                {
-                    usernameBox.AppendText(txt_user.Text + Environment.NewLine);
-                }));
-            }
-            else
-                usernameBox.AppendText(txt_user.Text + Environment.NewLine);
-        }
-
-
         private void DisplayMenuText(string message)
         {
             if (menu_name.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
@@ -231,7 +211,9 @@ namespace ChatClient
 
         private void btn_Logout_Click(object sender, EventArgs e)
         {
-            rt_Message.AppendText("[ " + curDate + " ] " + txt_user.Text + " 님이 대화방을 나갔습니다.");
+            //지수지수: 바이트배열 안에 exit 다음 "$"랑 txt_user.Text 넣는거
+            //->exit 뒤에 구분자랑 이름을 넣으면 한 클라 종료시 다 꺼짐.
+            //근데 기존에는 사용자가 누구든 exit만 서버에 전달돼서, 서버에서 사용자 이름을 인식하고 뿌려줄 수가 없음.
             byte[] buffer = Encoding.Unicode.GetBytes("exit" + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
@@ -257,50 +239,9 @@ namespace ChatClient
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*
-            Point parentPoint = this.Location;
-            Form2 newform2 = new Form2();
-            newform2.StartPosition = FormStartPosition.Manual;
-            newform2.Location = new Point(parentPoint.X + 625, parentPoint.Y + 50);
-            newform2.Show();
-            */
             byte[] buffer = Encoding.Unicode.GetBytes("메뉴 추천 버튼 클릭$" + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
         }
-
-
-        //-----------------------------------------------폼2추가 부분
-        //private void show_alert(string msg)
-        //{
-        //    Form2 alert = new Form2();
-        //    alert.ShowDialog();
-        //}
-
-        //private void show_alert1(string message)
-        //{
-        //    Form2 alert = new Form2();
-        //    //alert.Location = new Point();
-        //    if (alert.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
-        //    {
-        //        alert.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
-        //        {   
-        //            alert.Show();
-
-        //        }));
-        //    }
-        //    else
-        //    {
-        //        alert.Show();
-                
-        //    }
-                
-        //}
-
-
-
-        //--------------------------------------------------------------
-
-
     }
 }

@@ -109,3 +109,4 @@ C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClie
 C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.exe
 C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.pdb
 C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.Form2.resources
+C:\Users\jisoo\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.Form2.resources

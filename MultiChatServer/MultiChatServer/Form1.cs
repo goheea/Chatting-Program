@@ -41,7 +41,8 @@ namespace MultiChatServer
             if (flag)
             {
                 if (message.Equals("disConnect"))
-                    sendMsg = "[ " + curDate + " ] " + username + " 님이 대화방을 나갔습니다.";
+                    sendMsg = "[ " + curDate + " ] " + username + "님이 대화방을 나갔습니다.";
+
 
                 else
                     sendMsg = "[ " + curDate + " ] " + username + " : " + message;
@@ -58,7 +59,7 @@ namespace MultiChatServer
 
 
         }
-
+        /*바꾸기전
         private void displayMessage(string text)
         {
             if (txt_Message.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
@@ -71,6 +72,19 @@ namespace MultiChatServer
             else
                 txt_Message.AppendText(text + Environment.NewLine);
 
+        }
+        */
+        private void displayMessage(string text)
+        {//지수: 여기서 txt_Message 디버깅에 크로스스레드 오류가 나옴.
+            if (txt_Message.InvokeRequired) // 다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+            {
+                txt_Message.BeginInvoke((MethodInvoker)delegate
+                {
+                    txt_Message.AppendText(text + Environment.NewLine);
+                });
+            }
+            else
+                txt_Message.AppendText(text + Environment.NewLine);
         }
 
         private void button1_Click(object sender, EventArgs ev)
@@ -114,6 +128,13 @@ namespace MultiChatServer
                 clientSocketList[sock] = stData; // Login 사용자명 셋팅
                 sendMsg = "[ " + curDate + " ] " + stData + "님이 입장하셨습니다.";
             }
+            /*지수지수: 
+            else if (stCmd.ToUpper() == "exit".ToUpper())
+            {
+                clientSocketList[sock] = stData; // Login 사용자명 셋팅
+                sendMsg = "[ " + curDate + " ] " + stData + "님이 대화방을 나갔습니다.";
+            }
+            */
             else
             {
                 sendMsg = "[ " + curDate + " ] " + stCmd + " : " + stData;

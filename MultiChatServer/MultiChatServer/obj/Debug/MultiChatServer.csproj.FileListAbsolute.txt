@@ -69,3 +69,17 @@ C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debu
 C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CopyComplete
 C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.exe
 C:\Users\hello\Desktop\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.pdb
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.exe.config
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.exe
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MultiChatServer.pdb
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MetroFramework.dll
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.AssemblyReference.cache
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.SuggestedBindingRedirects.cache
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.Form1.resources
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.Properties.Resources.resources
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.GenerateResource.cache
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CoreCompileInputs.cache
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.csproj.CopyComplete
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.exe
+C:\Users\jisoo\Chatting-Program\MultiChatServer\MultiChatServer\obj\Debug\MultiChatServer.pdb
