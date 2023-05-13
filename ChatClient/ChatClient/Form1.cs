@@ -118,7 +118,7 @@ namespace ChatClient
                 {
                     DisplayText(message);
                     //----------------폼2추가부분
-                    show_alert1(message);
+                    //show_alert1(message);
                     //--------------------------
                 }
                 /*
@@ -277,25 +277,25 @@ namespace ChatClient
         //    alert.ShowDialog();
         //}
 
-        private void show_alert1(string message)
-        {
-            Form2 alert = new Form2();
-            //alert.Location = new Point();
-            if (alert.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
-            {
-                alert.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
-                {
-                    alert.Show();
+        //private void show_alert1(string message)
+        //{
+        //    Form2 alert = new Form2();
+        //    //alert.Location = new Point();
+        //    if (alert.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+        //    {
+        //        alert.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
+        //        {   
+        //            alert.Show();
 
-                }));
-            }
-            else
-            {
-                alert.Show();
+        //        }));
+        //    }
+        //    else
+        //    {
+        //        alert.Show();
                 
-            }
+        //    }
                 
-        }
+        //}
 
 
 

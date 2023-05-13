@@ -15,10 +15,11 @@ namespace ChatClient
         public Form2()
         {
             InitializeComponent();
-            timer1.Interval = 1000;
-            timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Start();
-
+            //this.timer1.Interval = 1000;
+            //this.timer1.Tick += new EventHandler(timer1_Tick);
+            //timer1.Start();
+            
+            
         }
 
         
@@ -28,8 +29,8 @@ namespace ChatClient
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        {
-            this.Close();
+        {   
+            
         }
     }
 }
