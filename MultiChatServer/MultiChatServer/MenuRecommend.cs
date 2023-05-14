@@ -95,20 +95,6 @@ namespace MultiChatServer
                         {
                             precipitation = int.Parse(node1["obsrValue"].InnerText);
                             Console.WriteLine("강수형태는 {0}", precipitation);
-                            /*
-                            switch (double.Parse(node1["obsrValue"].InnerText))
-                            {
-                                case 0:
-                                    Console.WriteLine("없음");
-                                    break;
-                                case 1:
-                                    Console.WriteLine("비");
-                                    break;
-                                default:
-                                    Console.WriteLine("해당 자료가 없습니다.");
-                                    break;
-                            }
-                            */
                         }
                         if (node1["category"].InnerText.Equals("humidity"))  // 습도
                         {

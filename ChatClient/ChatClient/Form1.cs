@@ -10,18 +10,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net; //WebClient
-using System.IO; //MemoryStream
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.IO.Ports;
+using System.Configuration; //참조 추가를 해야함(어셈블리탭 -> System.Configuration.dll)
+using MySql.Data.MySqlClient; //솔루션용 nuget패키지 관리자에서 MySql.Data를 설치해야함.
 
 namespace ChatClient
 {
     public partial class Form1 : MetroForm
     {
+        public MySqlConnection conn = new MySqlConnection("Server=localhost;Port=3306;Database=chatting_program;Uid=root;Pwd=1234");
         TcpClient clientSocket; // 소켓
         NetworkStream stream = default(NetworkStream);
-        string stSendMessage = "";
         // 메시지는 개행으로 구분한다.
         private static char CR = (char)0x0D;
         private static char LF = (char)0x0A;
@@ -29,8 +27,6 @@ namespace ChatClient
         string menuresult = "";
         string menuimage = "";
         string tmp = "";
-        //지수
-        List<string> names = new List<string>();
         String curDate = DateTime.Now.ToString("HH:mm:ss");
 
         public Form1()
@@ -48,6 +44,7 @@ namespace ChatClient
             {
                 clientSocket.Connect(txt_ServerIP.Text, Port); // 접속 IP 및 포트
                 stream = clientSocket.GetStream();
+                conn.Open();
             }
             catch (Exception e2)
             {
@@ -97,99 +94,18 @@ namespace ChatClient
                     {
                         if (message.EndsWith("님이 입장하셨습니다."))
                         {
-                            int start = message.IndexOf(']') + 2;
-                            int end = message.IndexOf("님이");
-                            string name = message.Substring(start, end - start);
-                            names.Add(name);
-                            DisplayName(names);
+                            DisplayName();
                         }
                         if (message.EndsWith("님이 대화방을 나갔습니다."))
                         {
-                            int start = message.IndexOf(']') + 2;
-                            int end = message.IndexOf("님이");
-                            string name = message.Substring(start, end - start);
-                            names.Remove(name);
-                            DisplayName(names);
+                            DisplayName();
                         }
                     }
                     else
                     {
                         show_alert1(message);
                     }
-                    
                 }
-                /*
-                if (message.EndsWith("님이 입장하셨습니다."))
-                {
-                    int start = message.IndexOf(']') + 2;
-                    int end = message.IndexOf("님이");
-                    string name = message.Substring(start, end - start);
-                    names.Add(name);
-
-                    if (usernameBox.InvokeRequired)
-                    {
-                        usernameBox.BeginInvoke(new MethodInvoker(delegate
-                        {
-                            usernameBox.Clear();
-                            foreach (string n in names)
-                            {
-                                usernameBox.AppendText(n + Environment.NewLine);
-                            }
-                        }));
-                    }
-                    else
-                    {
-                        usernameBox.Clear();
-                        foreach (string n in names)
-                        {
-                            usernameBox.AppendText(n + Environment.NewLine);
-                        }
-                    }
-
-                   
-                }
-
-
-                //지수지수
-                if (message.EndsWith("님이 대화방을 나갔습니다."))
-                {
-                    int start = message.IndexOf(']') + 2;
-                    int end = message.IndexOf("님이");
-                    string name = message.Substring(start, end - start);
-                    names.Remove(name);
-                    if (usernameBox.InvokeRequired)
-                    {
-                        usernameBox.BeginInvoke(new MethodInvoker(delegate
-                        {
-                            usernameBox.Clear();
-                            foreach (string n in names)
-                            {
-                                usernameBox.AppendText(n + Environment.NewLine);
-                            }
-                        }));
-                    }
-                    else
-                    {
-                        usernameBox.Clear();
-                        foreach (string n in names)
-                        {
-                            usernameBox.AppendText(n + Environment.NewLine);
-                        }
-                    }
-                }
-
-                else
-                {
-                    DisplayText(message);
-                }
-
-                //-------------------------------------------------------------------------------미정미정
-                if (!message.Contains("메뉴 추천 버튼 클릭") && !message.EndsWith("님이 입장하셨습니다.") && !message.EndsWith("님이 대화방을 나갔습니다."))
-                {
-                    show_alert1(message);
-                }
-                //--------------------------------------------------------------------------------
-                */
             }
         }
 
@@ -206,18 +122,7 @@ namespace ChatClient
             else
                 rt_Message.AppendText(message + Environment.NewLine);
         }
-        /*지수
-        private void usernameDisplay(object sender, SerialDataReceivedEventArgs e)
-        {
-            this.Invoke(new Action(delegate ()
-            {
-                foreach (string n in names)
-                {
-                    usernameBox.AppendText(n + Environment.NewLine);
-                }
-            }));
-        }
-        */
+
         private void DisplayMenuText(string message)
         {
             if (menu_name.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
@@ -248,31 +153,46 @@ namespace ChatClient
             }
         }
 
-        private void DisplayName(List<string> message)
+        private void DisplayName()
         {
             if (usernameBox.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
             {
-                usernameBox.Clear();
+                //usernameBox.Clear();
                 usernameBox.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
                 {
-                    foreach (string n in names)
+                    usernameBox.Clear();
+                    DataSet ds = new DataSet();
+                    string query = "SELECT name from chatting_program.user_names";
+                    MySqlDataAdapter adpt = new MySqlDataAdapter(query, conn);
+                    adpt.Fill(ds, "name");
+                    if(ds.Tables.Count > 0)
                     {
-                        usernameBox.AppendText(n + Environment.NewLine);
+                        foreach (DataRow r in ds.Tables[0].Rows)
+                        {
+                            usernameBox.AppendText(r["name"] + Environment.NewLine);
+                        }
                     }
                 }));
             }
             else
-                foreach (string n in names)
+            {
+                usernameBox.Clear();
+                DataSet ds = new DataSet();
+                string query = "SELECT name from chatting_program.user_names";
+                MySqlDataAdapter adpt = new MySqlDataAdapter(query, conn);
+                adpt.Fill(ds, "name");
+                if (ds.Tables.Count > 0)
                 {
-                    usernameBox.AppendText(n + Environment.NewLine);
+                    foreach (DataRow r in ds.Tables[0].Rows)
+                    {
+                        usernameBox.AppendText(r["name"] + Environment.NewLine);
+                    }
                 }
+            }
         }
 
         private void btn_Logout_Click(object sender, EventArgs e)
         {
-            //지수지수: 바이트배열 안에 exit 다음 "$"랑 txt_user.Text 넣는거
-            //->exit 뒤에 구분자랑 이름을 넣으면 한 클라 종료시 다 꺼짐.
-            //근데 기존에는 사용자가 누구든 exit만 서버에 전달돼서, 서버에서 사용자 이름을 인식하고 뿌려줄 수가 없음.
             byte[] buffer = Encoding.Unicode.GetBytes("exit" + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
@@ -303,8 +223,6 @@ namespace ChatClient
             stream.Flush();
         }
 
-        
-        //----------------------------------------------------------------------------------
         private void show_alert1(string message)                      //비동기 메소드............await
         {
             Form2 alert = new Form2();

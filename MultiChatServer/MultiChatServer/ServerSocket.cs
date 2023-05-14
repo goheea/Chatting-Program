@@ -24,8 +24,6 @@ namespace MultiChatServer
         string url_base = "https://github.com/goheea/MiniServer/blob/main/";
         string tmp = "";
         private Socket socket;
-        string name_tmp = "";
-        List<int> user_socket_handles = new List<int>();
         // 메시지를 모으기 위한 버퍼
         private StringBuilder sb = new StringBuilder();
         private IPEndPoint remoteAddr;
@@ -41,7 +39,6 @@ namespace MultiChatServer
             {
                 this.socket = socket;
                 Console.WriteLine("{0}", socket.Handle);
-                user_socket_handles.Add((int)socket.Handle);
                 // 메모리 버퍼를 초기화 한다. 크기는 1024이다
                 base.SetBuffer(new byte[1024], 0, 1024);
                 base.UserToken = socket;
@@ -69,29 +66,12 @@ namespace MultiChatServer
             socket = null;
         }
 
-        //지수지수: 바꾸기전 원본
         public void Send(String msg)
         {
             byte[] sendData = Encoding.Unicode.GetBytes(msg);
-            //sendArgs.SetBuffer(sendData, 0, sendData.Length);
-            //socket.SendAsync(sendArgs);
             // Client로 메시지 전송
             if (socket != null) socket.Send(sendData, sendData.Length, SocketFlags.None);
         }
-        
-        /*지수지수: 바꾸기
-        public delegate void SendDelegate(string msg);
-
-        public void Send(string msg)
-        {
-            byte[] sendData = Encoding.Unicode.GetBytes(msg);
-            if (socket != null)
-            {
-                SendDelegate sendDelegate = new SendDelegate(Send);
-                socket.BeginInvoke(sendDelegate, new object[] { msg });
-            }
-        }
-        */
 
         private void Client_Completed(object sender, SocketAsyncEventArgs e)
         {
