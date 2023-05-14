@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration; //참조 추가를 해야함(어셈블리탭 -> System.Configuration.dll)
+using MySql.Data.MySqlClient; //솔루션용 nuget패키지 관리자에서 MySql.Data를 설치해야함.
 
 namespace MultiChatServer
 {
@@ -23,6 +25,7 @@ namespace MultiChatServer
         ServerProgram multiServer;
         MenuRecommend menurecommend;
         int serverPort;
+        public MySqlConnection conn = new MySqlConnection("Server=localhost;Port=3306;Database=chatting_program;Uid=root;Pwd=1234");
 
         public Form1()
         {
@@ -41,9 +44,12 @@ namespace MultiChatServer
             if (flag)
             {
                 if (message.Equals("disConnect"))
+                {
+                    string query = "delete from chatting_program.user_names where name = \"" + username + "\"";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.ExecuteNonQuery();
                     sendMsg = "[ " + curDate + " ] " + username + "님이 대화방을 나갔습니다.";
-
-
+                }
                 else
                     sendMsg = "[ " + curDate + " ] " + username + " : " + message;
 
@@ -99,7 +105,7 @@ namespace MultiChatServer
                 //textbox 에 숫자 외의 문자인 경우
                 serverPort = 1004;
             }
-
+            conn.Open();
             menurecommend = new MenuRecommend();
             multiServer = new ServerProgram(serverPort);
             multiServer.OnConnect += clientConnected;
@@ -126,6 +132,9 @@ namespace MultiChatServer
             {
                 clientSocketList[sock] = stData; // Login 사용자명 셋팅
                 sendMsg = "[ " + curDate + " ] " + stData + "님이 입장하셨습니다.";
+                string query = "insert into chatting_program.user_names (name) value (\"" + stData + "\")";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.ExecuteNonQuery();
             }
             /*지수지수: 
             else if (stCmd.ToUpper() == "exit".ToUpper())

@@ -111,3 +111,7 @@ C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClie
 C:\Users\hello\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.Form2.resources
 C:\Users\jisoo\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.Form2.resources
 C:\Users\gmldk\Desktop\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.Form2.resources
+C:\Users\gmldk\Desktop\채팅 프로그램\Chatting-Program\ChatClient\ChatClient\bin\Debug\MetroFramework.dll
+C:\Users\gmldk\Desktop\채팅 프로그램\Chatting-Program\ChatClient\ChatClient\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\gmldk\Desktop\채팅 프로그램\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.Form2.resources
+C:\Users\gmldk\Desktop\채팅 프로그램\Chatting-Program\ChatClient\ChatClient\obj\Debug\ChatClient.csproj.CopyComplete
