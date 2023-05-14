@@ -89,7 +89,36 @@ namespace ChatClient
                     DisplayMenuText(menuresult);
                     DisplayMenuImage(menuimage);
                 }
-                
+
+                else
+                {
+                    DisplayText(message);
+                    if (message.EndsWith("님이 입장하셨습니다.") || message.EndsWith("님이 대화방을 나갔습니다."))
+                    {
+                        if (message.EndsWith("님이 입장하셨습니다."))
+                        {
+                            int start = message.IndexOf(']') + 2;
+                            int end = message.IndexOf("님이");
+                            string name = message.Substring(start, end - start);
+                            names.Add(name);
+                            DisplayName(names);
+                        }
+                        if (message.EndsWith("님이 대화방을 나갔습니다."))
+                        {
+                            int start = message.IndexOf(']') + 2;
+                            int end = message.IndexOf("님이");
+                            string name = message.Substring(start, end - start);
+                            names.Remove(name);
+                            DisplayName(names);
+                        }
+                    }
+                    else
+                    {
+                        show_alert1(message);
+                    }
+                    
+                }
+                /*
                 if (message.EndsWith("님이 입장하셨습니다."))
                 {
                     int start = message.IndexOf(']') + 2;
@@ -160,6 +189,7 @@ namespace ChatClient
                     show_alert1(message);
                 }
                 //--------------------------------------------------------------------------------
+                */
             }
         }
 
@@ -218,6 +248,26 @@ namespace ChatClient
             }
         }
 
+        private void DisplayName(List<string> message)
+        {
+            if (usernameBox.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
+            {
+                usernameBox.Clear();
+                usernameBox.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
+                {
+                    foreach (string n in names)
+                    {
+                        usernameBox.AppendText(n + Environment.NewLine);
+                    }
+                }));
+            }
+            else
+                foreach (string n in names)
+                {
+                    usernameBox.AppendText(n + Environment.NewLine);
+                }
+        }
+
         private void btn_Logout_Click(object sender, EventArgs e)
         {
             //지수지수: 바이트배열 안에 exit 다음 "$"랑 txt_user.Text 넣는거
@@ -253,6 +303,7 @@ namespace ChatClient
             stream.Flush();
         }
 
+        
         //----------------------------------------------------------------------------------
         private void show_alert1(string message)                      //비동기 메소드............await
         {
@@ -277,8 +328,7 @@ namespace ChatClient
             alert.label2.Text = " ";
             alert.label2.Text = message_1;          //내용 표시
             alert.StartPosition = FormStartPosition.Manual;
-            alert.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - alert.Width,
-                                        Screen.PrimaryScreen.WorkingArea.Height - alert.Height);
+            alert.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - alert.Width, Screen.PrimaryScreen.WorkingArea.Height - alert.Height);
 
             alert.ShowDialog();
             //alert.timer1.Tick += new EventHandler(alert.timer1_Tick);
@@ -291,7 +341,7 @@ namespace ChatClient
 
 
         }
-
+        
 
         //-------------------------------------------------------------------------------------------
     }

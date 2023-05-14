@@ -24,6 +24,7 @@ namespace MultiChatServer
         string url_base = "https://github.com/goheea/MiniServer/blob/main/";
         string tmp = "";
         private Socket socket;
+
         // 메시지를 모으기 위한 버퍼
         private StringBuilder sb = new StringBuilder();
         private IPEndPoint remoteAddr;
@@ -109,6 +110,7 @@ namespace MultiChatServer
                     sb.Length = sb.Length - 2;
                     // string으로 변환한다.
                     msg = sb.ToString();
+
                     if (OnReceive != null)
                     {
                         if ("메뉴 추천 버튼 클릭$".Equals(msg, StringComparison.OrdinalIgnoreCase))
@@ -203,9 +205,9 @@ namespace MultiChatServer
             {
                 // 접속이 완료되면, Client Event를 생성하여 Receive이벤트를 생성한다.
                 var client = new Client(e.AcceptSocket);
+                Console.WriteLine("{0}", e.AcceptSocket.Handle);
                 client.OnReceive += ClientReceive;
                 client.OnDisconnect += ClientDisconnect;
-
                 clientSocketList.Add(e.AcceptSocket);
                 clientList.Add(e.AcceptSocket, client);
                 // 서버 Event에 cilent를 제거한다.
@@ -229,7 +231,7 @@ namespace MultiChatServer
 
             if (OnDisconnect != null)
                 OnDisconnect(sock);
-
+            Console.WriteLine("{0}", sock.Handle);
             clientList.Remove(sock);
             clientSocketList.Remove(sock);
         }
