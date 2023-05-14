@@ -116,6 +116,8 @@ namespace ChatClient
                             usernameBox.AppendText(n + Environment.NewLine);
                         }
                     }
+
+                   
                 }
 
 
@@ -151,6 +153,13 @@ namespace ChatClient
                 {
                     DisplayText(message);
                 }
+
+                //-------------------------------------------------------------------------------미정미정
+                if (!message.Contains("메뉴 추천 버튼 클릭") && !message.EndsWith("님이 입장하셨습니다.") && !message.EndsWith("님이 대화방을 나갔습니다."))
+                {
+                    show_alert1(message);
+                }
+                //--------------------------------------------------------------------------------
             }
         }
 
@@ -243,5 +252,47 @@ namespace ChatClient
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
         }
+
+        //----------------------------------------------------------------------------------
+        private void show_alert1(string message)                      //비동기 메소드............await
+        {
+            Form2 alert = new Form2();
+            string text = message;
+
+            int startIndex = text.IndexOf(']');  // ']' 인덱스값
+            int colonIndex = text.IndexOf(':', startIndex); // startIndex 이후의 ':' 인덱스 찾기
+            string name = text.Substring(startIndex + 1, colonIndex - (startIndex + 1)); //']'+1 인덱스 값 부터 콜론인덱스 사이의 값만큼 문자열 반환
+            string message_1 = text.Substring(colonIndex + 1); //이름 뒤 ':'값 뒤의 메시지 출력
+            if (message_1.Length > 15)
+            {
+                message_1 = message_1.Substring(0, 25) + "...";   //내용 생략 
+            }
+            else
+            {
+                message_1 = message_1;
+            }
+
+            alert.label1.Text = " ";
+            alert.label1.Text = name;               //이름 표시
+            alert.label2.Text = " ";
+            alert.label2.Text = message_1;          //내용 표시
+            alert.StartPosition = FormStartPosition.Manual;
+            alert.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - alert.Width,
+                                        Screen.PrimaryScreen.WorkingArea.Height - alert.Height);
+
+            alert.ShowDialog();
+            //alert.timer1.Tick += new EventHandler(alert.timer1_Tick);
+
+            //alert.Visible = true;
+            //await Task.Delay(2000);
+            //alert.Visible = false;
+            //alert.Close();
+            //ShowDialogAndClose(alert);
+
+
+        }
+
+
+        //-------------------------------------------------------------------------------------------
     }
 }

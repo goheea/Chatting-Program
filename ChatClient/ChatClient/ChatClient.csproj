@@ -85,6 +85,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -102,6 +103,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\icons8_messages_25px_1.png" />
+    <None Include="Resources\icons8_messages_25px.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\icons8_contacts_25px_2.png" />
+    <None Include="Resources\icons8_contacts_25px_1.png" />
+    <None Include="Resources\icons8_contacts_25px.png" />
+    <None Include="Resources\icons8_Checkmark_18px.png" />
+    <None Include="Resources\icons8_cancel_18px.png" />
+    <None Include="Resources\check_circle.png" />
+    <None Include="Resources\check.png" />
+    <None Include="Resources\cancel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
