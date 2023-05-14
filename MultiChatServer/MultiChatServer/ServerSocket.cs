@@ -24,7 +24,8 @@ namespace MultiChatServer
         string url_base = "https://github.com/goheea/MiniServer/blob/main/";
         string tmp = "";
         private Socket socket;
-
+        string name_tmp = "";
+        List<int> user_socket_handles = new List<int>();
         // 메시지를 모으기 위한 버퍼
         private StringBuilder sb = new StringBuilder();
         private IPEndPoint remoteAddr;
@@ -39,6 +40,8 @@ namespace MultiChatServer
             try //여기서 this는 SocketAsyncEventArgs를 나타내고, this 뒤는 SocketAsyncEventArgs의 속성을 나타낸다.
             {
                 this.socket = socket;
+                Console.WriteLine("{0}", socket.Handle);
+                user_socket_handles.Add((int)socket.Handle);
                 // 메모리 버퍼를 초기화 한다. 크기는 1024이다
                 base.SetBuffer(new byte[1024], 0, 1024);
                 base.UserToken = socket;
@@ -106,6 +109,7 @@ namespace MultiChatServer
                 // 메시지의 끝이 이스케이프 \r\n의 형태이면 서버에 표시한다.
                 if (sb.Length >= 2 && sb[sb.Length - 2] == CR && sb[sb.Length - 1] == LF)
                 {
+                    Console.WriteLine("{0}", socket);
                     // 개행은 없애고..
                     sb.Length = sb.Length - 2;
                     // string으로 변환한다.

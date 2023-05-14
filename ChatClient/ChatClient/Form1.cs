@@ -331,18 +331,6 @@ namespace ChatClient
             alert.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - alert.Width, Screen.PrimaryScreen.WorkingArea.Height - alert.Height);
 
             alert.ShowDialog();
-            //alert.timer1.Tick += new EventHandler(alert.timer1_Tick);
-
-            //alert.Visible = true;
-            //await Task.Delay(2000);
-            //alert.Visible = false;
-            //alert.Close();
-            //ShowDialogAndClose(alert);
-
-
         }
-        
-
-        //-------------------------------------------------------------------------------------------
     }
 }
