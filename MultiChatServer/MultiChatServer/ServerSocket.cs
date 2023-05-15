@@ -50,7 +50,7 @@ namespace MultiChatServer
                 remoteAddr = (IPEndPoint)socket.RemoteEndPoint;
                 if (remoteAddr != null)
                 {
-                    //Console.WriteLine($"Client : (From: {remoteAddr.Address.ToString()}:{remoteAddr.Port}, Connection time: {DateTime.Now})");
+                    Console.WriteLine($"Client : (IP address: {remoteAddr.Address.ToString()}:{remoteAddr.Port}, Connection time: {DateTime.Now})");
                     //this.Send("Welcome server!\r\n>");
                 }
 

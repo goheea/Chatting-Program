@@ -257,7 +257,7 @@ namespace ChatClient
             this.menu_name.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.menu_name.Name = "menu_name";
             this.menu_name.ReadOnly = true;
-            this.menu_name.Size = new System.Drawing.Size(214, 28);
+            this.menu_name.Size = new System.Drawing.Size(210, 28);
             this.menu_name.TabIndex = 4;
             this.menu_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
