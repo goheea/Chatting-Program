@@ -33,6 +33,7 @@ namespace ChatClient
         public bool test = false;
         TextBox[] txtList;
         const string msgPlaceholder = "메세지를 입력하세요.";
+        string name_tmp = "";
 
         public Form1()
         {
@@ -129,6 +130,7 @@ namespace ChatClient
             menu_viewer.Enabled = false;
             menu_name.Enabled = false;
 
+            name_tmp = txt_user.Text;
             byte[] buffer = Encoding.Unicode.GetBytes("Login$" + txt_user.Text + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
@@ -170,7 +172,11 @@ namespace ChatClient
                     }
                     else
                     {
-                        show_alert1(message);
+                        int startIndex = message.IndexOf(']');  // ']' 인덱스값
+                        int colonIndex = message.IndexOf(':', startIndex); // startIndex 이후의 ':' 인덱스 찾기
+                        string name0 = message.Substring(startIndex + 2, colonIndex - (startIndex + 2)-1); //']'+1 인덱스 값 부터 콜론인덱스 사이의 값만큼 문자열 반환
+                        if(name0 != name_tmp)
+                            show_alert1(message);
                         //---------------------------------------------------------------------미정
                         //Icon icon = new Icon("C:\\Users\\Admin\\Downloads\\chat.png");
                         //this.Icon = icon;
