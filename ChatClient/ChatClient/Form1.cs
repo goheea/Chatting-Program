@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration; //참조 추가를 해야함(어셈블리탭 -> System.Configuration.dll)
 using MySql.Data.MySqlClient; //솔루션용 nuget패키지 관리자에서 MySql.Data를 설치해야함.
+using System.Runtime.InteropServices;
 
 namespace ChatClient
 {
@@ -38,7 +39,7 @@ namespace ChatClient
         public Form1()
         {
             InitializeComponent();
-
+            
             txtList = new TextBox[] {txt_message};
             foreach (var txt in txtList)
             {
@@ -137,11 +138,32 @@ namespace ChatClient
                     else
                     {
                         show_alert1(message);
+                        //---------------------------------------------------------------------미정
+                        //Icon icon = new Icon("C:\\Users\\Admin\\Downloads\\chat.png");
+                        //this.Icon = icon;
+                        //this.Icon = ChangeIconBackgroundColor(icon, Color.Red);
+                        //--------------------------------------
+            
+            //--------------------------------------
+
                     }
                 }
             }
         }
 
+        //private Icon ChangeIconBackgroundColor(Icon icon, Color backgroundColor)
+        //{
+        //    Bitmap bmp = icon.ToBitmap();
+        //    bmp.MakeTransparent();
+        //    Bitmap bmp2 = new Bitmap(bmp.Width, bmp.Height);
+        //    Graphics graphics = Graphics.FromImage(bmp2);
+        //    graphics.Clear(backgroundColor);
+        //    graphics.DrawImage(bmp, 0, 0, bmp.Width, bmp.Height);
+        //    Icon newIcon = Icon.FromHandle(bmp2.GetHicon());
+        //    graphics.Dispose();
+        //    return newIcon;
+        //}
+        //----------------------------------------------------------------------------------------
         private void DisplayText(string message)
         {
             if (rt_Message.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
@@ -269,10 +291,7 @@ namespace ChatClient
             {
                 message_1 = message_1.Substring(0, 18) + "...";   //내용 생략 
             }
-            else
-            {
-                message_1 = message_1;
-            }
+            
 
             alert.label1.Text = " ";
             alert.label1.Text = name;               //이름 표시
@@ -281,7 +300,129 @@ namespace ChatClient
             alert.StartPosition = FormStartPosition.Manual;
             alert.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - alert.Width - 10, Screen.PrimaryScreen.WorkingArea.Height - alert.Height - 10);
 
+            //delegate void MyDelegate(object sender, EventArgs e);
+
             alert.ShowDialog();
+
         }
+    }
+    //-----------------------------------------------------------------------
+    public static class FlashWindow
+    {
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool FlashWindowEx(ref FLASHWINFO pwfi);
+
+        /// Stop flashing. The system restores the window to its original state.
+        public const uint FLASHW_STOP = 0;
+
+        /// Flash the window caption.
+        public const uint FLASHW_CAPTION = 1;
+
+        /// Flash the taskbar button.
+        public const uint FLASHW_TRAY = 2;
+
+        /// Flash both the window caption and taskbar button.
+        /// This is equivalent to setting the FLASHW_CAPTION | FLASHW_TRAY flags.
+        public const uint FLASHW_ALL = 3;
+
+        /// Flash continuously, until the FLASHW_STOP flag is set.
+        public const uint FLASHW_TIMER = 4;
+
+        /// Flash continuously until the window comes to the foreground.
+        public const uint FLASHW_TIMERNOFG = 12;
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct FLASHWINFO
+        {
+
+            /// The size of the structure in bytes.
+            public uint cbSize;
+
+            /// A Handle to the Window to be Flashed. The window can be either opened or minimized.
+            public IntPtr hwnd;
+
+            /// The Flash Status.
+            public uint dwFlags;
+
+            /// The number of times to Flash the window.
+            public uint uCount;
+
+            /// The rate at which the Window is to be flashed, in milliseconds. If Zero, the function uses the default cursor blink rate.
+            public uint dwTimeout;
+        }
+
+        /// Flash the specified Window (Form) until it receives focus.
+        public static bool Flash(System.Windows.Forms.Form form)
+        {
+            // Make sure we're running under Windows 2000 or later
+            if (Win2000OrLater)
+            {
+                FLASHWINFO fi = Create_FLASHWINFO(form.Handle, FLASHW_ALL | FLASHW_TIMERNOFG, uint.MaxValue, 0);
+                return FlashWindowEx(ref fi);
+            }
+            return false;
+        }
+
+        /// Flash the specified Window (form) for the specified number of times
+        public static bool Flash(System.Windows.Forms.Form form, uint count)
+        {
+            if (Win2000OrLater)
+            {
+                FLASHWINFO fi = Create_FLASHWINFO(form.Handle, FLASHW_ALL, count, 0);
+                return FlashWindowEx(ref fi);
+            }
+            return false;
+        }
+
+        private static FLASHWINFO Create_FLASHWINFO(IntPtr handle, uint flags, uint count, uint timeout)
+        {
+            FLASHWINFO fi = new FLASHWINFO();
+            fi.cbSize = Convert.ToUInt32(Marshal.SizeOf(fi));
+            fi.hwnd = handle;
+            fi.dwFlags = flags;
+            fi.uCount = count;
+            fi.dwTimeout = timeout;
+            return fi;
+        }
+
+        /// helper methods
+        public static bool Tray(System.Windows.Forms.Form form)
+        {
+            if (Win2000OrLater)
+            {
+                FLASHWINFO fi = Create_FLASHWINFO(form.Handle, FLASHW_TRAY, uint.MaxValue, 0);
+                return FlashWindowEx(ref fi);
+            }
+            return false;
+        }
+
+        public static bool TrayAndWindow(System.Windows.Forms.Form form)
+        {
+            if (Win2000OrLater)
+            {
+                FLASHWINFO fi = Create_FLASHWINFO(form.Handle, FLASHW_ALL, uint.MaxValue, 0);
+                return FlashWindowEx(ref fi);
+            }
+            return false;
+        }
+
+        /// Stop Flashing the specified Window (form)
+        public static bool Stop(System.Windows.Forms.Form form)
+        {
+            if (Win2000OrLater)
+            {
+                FLASHWINFO fi = Create_FLASHWINFO(form.Handle, FLASHW_STOP, uint.MaxValue, 0);
+                return FlashWindowEx(ref fi);
+            }
+            return false;
+        }
+
+        /// A boolean value indicating whether the application is running on Windows 2000 or later.
+        private static bool Win2000OrLater
+        {
+           get { return System.Environment.OSVersion.Version.Major >= 5; }
+        }
+
     }
 }
