@@ -66,10 +66,6 @@ namespace ChatClient
                 if (txt == txt_message) { txt.Text = msgPlaceholder;}
             }
         }
-        private void txt_message_LostFocus(object sender, EventArgs e)
-        {
-            txt_message.Focus(); // 텍스트박스에 다시 포커스를 설정합니다.
-        }
 
         private void btn_Login_Click(object sender, EventArgs e)
         {
@@ -177,32 +173,10 @@ namespace ChatClient
                         string name0 = message.Substring(startIndex + 2, colonIndex - (startIndex + 2)-1); //']'+1 인덱스 값 부터 콜론인덱스 사이의 값만큼 문자열 반환
                         if(name0 != name_tmp)
                             show_alert1(message);
-                        //---------------------------------------------------------------------미정
-                        //Icon icon = new Icon("C:\\Users\\Admin\\Downloads\\chat.png");
-                        //this.Icon = icon;
-                        //this.Icon = ChangeIconBackgroundColor(icon, Color.Red);
-                        //--------------------------------------
-            
-            //--------------------------------------
-
                     }
                 }
             }
         }
-
-        //private Icon ChangeIconBackgroundColor(Icon icon, Color backgroundColor)
-        //{
-        //    Bitmap bmp = icon.ToBitmap();
-        //    bmp.MakeTransparent();
-        //    Bitmap bmp2 = new Bitmap(bmp.Width, bmp.Height);
-        //    Graphics graphics = Graphics.FromImage(bmp2);
-        //    graphics.Clear(backgroundColor);
-        //    graphics.DrawImage(bmp, 0, 0, bmp.Width, bmp.Height);
-        //    Icon newIcon = Icon.FromHandle(bmp2.GetHicon());
-        //    graphics.Dispose();
-        //    return newIcon;
-        //}
-        //----------------------------------------------------------------------------------------
         private void DisplayText(string message)
         {
             if (rt_Message.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
@@ -315,7 +289,11 @@ namespace ChatClient
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
         }
-
+        private void txt_message_LostFocus(object sender, EventArgs e)
+        {
+            this.Activate();
+            txt_message.Focus(); // 텍스트박스에 다시 포커스를 설정합니다.
+        }
         private void show_alert1(string message)                      //비동기 메소드............await
         {
             Form2 alert = new Form2();
@@ -330,15 +308,12 @@ namespace ChatClient
                 message_1 = message_1.Substring(0, 18) + "...";   //내용 생략 
             }
             
-
             alert.label1.Text = " ";
             alert.label1.Text = name;               //이름 표시
             alert.label2.Text = " ";
             alert.label2.Text = message_1;          //내용 표시
             alert.StartPosition = FormStartPosition.Manual;
             alert.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - alert.Width - 10, Screen.PrimaryScreen.WorkingArea.Height - alert.Height - 10);
-
-            //delegate void MyDelegate(object sender, EventArgs e);
 
             alert.ShowDialog();
 

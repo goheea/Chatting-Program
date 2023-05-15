@@ -233,6 +233,7 @@ namespace ChatClient
             this.rt_Message.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rt_Message.Name = "rt_Message";
             this.rt_Message.ReadOnly = true;
+            this.rt_Message.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.rt_Message.Size = new System.Drawing.Size(631, 372);
             this.rt_Message.TabIndex = 2;
             this.rt_Message.Text = "";
