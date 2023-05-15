@@ -43,11 +43,11 @@ namespace MultiChatServer
             // 
             // txt_ServerPort
             // 
-            this.txt_ServerPort.Font = new System.Drawing.Font("AppleSDGothicNeoR00", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txt_ServerPort.Location = new System.Drawing.Point(39, 219);
+            this.txt_ServerPort.Font = new System.Drawing.Font("AppleSDGothicNeoR00", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txt_ServerPort.Location = new System.Drawing.Point(42, 220);
             this.txt_ServerPort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_ServerPort.Name = "txt_ServerPort";
-            this.txt_ServerPort.Size = new System.Drawing.Size(110, 30);
+            this.txt_ServerPort.Size = new System.Drawing.Size(110, 27);
             this.txt_ServerPort.TabIndex = 1;
             this.txt_ServerPort.Text = "7000";
             // 
@@ -57,7 +57,7 @@ namespace MultiChatServer
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             this.label1.Font = new System.Drawing.Font("AppleSDGothicNeoSB00", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(35, 179);
+            this.label1.Location = new System.Drawing.Point(36, 185);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 24);
             this.label1.TabIndex = 0;
@@ -65,11 +65,14 @@ namespace MultiChatServer
             // 
             // txt_Message
             // 
+            this.txt_Message.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txt_Message.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txt_Message.Enabled = false;
             this.txt_Message.Location = new System.Drawing.Point(260, 63);
             this.txt_Message.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_Message.Name = "txt_Message";
             this.txt_Message.ReadOnly = true;
+            this.txt_Message.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txt_Message.Size = new System.Drawing.Size(618, 431);
             this.txt_Message.TabIndex = 3;
             this.txt_Message.Text = "";
@@ -81,7 +84,7 @@ namespace MultiChatServer
             this.textBox2.Cursor = System.Windows.Forms.Cursors.Default;
             this.textBox2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.textBox2.Location = new System.Drawing.Point(44, 16);
+            this.textBox2.Location = new System.Drawing.Point(44, 25);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(150, 37);
@@ -119,7 +122,7 @@ namespace MultiChatServer
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(154, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(154, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(45, 48);
             this.pictureBox1.TabIndex = 21;

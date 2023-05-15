@@ -38,7 +38,7 @@ namespace ChatClient
         public Form1()
         {
             InitializeComponent();
-            
+
             txtList = new TextBox[] {txt_message};
             foreach (var txt in txtList)
             {
@@ -66,7 +66,6 @@ namespace ChatClient
                 if (txt == txt_message) { txt.Text = msgPlaceholder;}
             }
         }
-
         private void btn_Login_Click(object sender, EventArgs e)
         {
             bThreadExit = false;
@@ -184,11 +183,15 @@ namespace ChatClient
                 rt_Message.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
                 {
                     rt_Message.AppendText(message + Environment.NewLine);
-                    
+                    rt_Message.SelectionStart = rt_Message.TextLength; //자동스크롤
+                    rt_Message.ScrollToCaret();
+
                 }));
             }
             else
                 rt_Message.AppendText(message + Environment.NewLine);
+                rt_Message.SelectionStart = rt_Message.TextLength; //자동스크롤
+                rt_Message.ScrollToCaret();
         }
 
         private void DisplayMenuText(string message)
@@ -282,17 +285,23 @@ namespace ChatClient
         {
             if (e.KeyCode == Keys.Enter) btn_Send_Click(sender, e);
         }
+        private void btn_Login_MouseEnter(object sender, EventArgs e)
+        {
+
+            btn_Login.BackColor = Color.DeepSkyBlue; // 원하는 색상으로 변경
+            btn_Login.ForeColor = Color.White; // 원하는 색상으로 변경
+        }
+        private void btn_Login_MouseLeave(object sender, EventArgs e)
+        {
+            btn_Login.BackColor = Color.White; 
+            btn_Login.ForeColor = Color.DodgerBlue; 
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             byte[] buffer = Encoding.Unicode.GetBytes("메뉴 추천 버튼 클릭$" + CR + LF);
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
-        }
-        private void txt_message_LostFocus(object sender, EventArgs e)
-        {
-            this.Activate();
-            txt_message.Focus(); // 텍스트박스에 다시 포커스를 설정합니다.
         }
         private void show_alert1(string message)                      //비동기 메소드............await
         {

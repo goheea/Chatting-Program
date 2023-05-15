@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration; //참조 추가를 해야함(어셈블리탭 -> System.Configuration.dll)
 using MySql.Data.MySqlClient; //솔루션용 nuget패키지 관리자에서 MySql.Data를 설치해야함.
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MultiChatServer
 {
@@ -25,12 +26,11 @@ namespace MultiChatServer
         ServerProgram multiServer;
         MenuRecommend menurecommend;
         int serverPort;
-        public MySqlConnection conn = new MySqlConnection("Server=192.168.100.250;Port=3306;Database=chatting_program;Uid=root;Pwd=1234");
+        public MySqlConnection conn = new MySqlConnection("Server=localhost;Port=3306;Database=chatting_program;Uid=root;Pwd=1234");
 
         public Form1()
         {
             InitializeComponent();
-
         }
 
 
@@ -73,14 +73,19 @@ namespace MultiChatServer
                 txt_Message.BeginInvoke((MethodInvoker)delegate
                 {
                     txt_Message.AppendText(text + Environment.NewLine);
+                    txt_Message.SelectionStart = txt_Message.TextLength; //자동스크롤
+                    txt_Message.ScrollToCaret();
                 });
             }
             else
                 txt_Message.AppendText(text + Environment.NewLine);
+                txt_Message.SelectionStart = txt_Message.TextLength; //자동스크롤
+                txt_Message.ScrollToCaret();
         }
 
         private void button1_Click(object sender, EventArgs ev)
         {
+            txt_ServerPort.Enabled = false;
             button1.Enabled = false;
             try
             {
