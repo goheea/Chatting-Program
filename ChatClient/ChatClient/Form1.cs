@@ -29,9 +29,7 @@ namespace ChatClient
         string menuimage = "";
         string tmp = "";
         String curDate = DateTime.Now.ToString("HH:mm:ss");
-
-        //지수
-        //public virtual string PlaceholderText { get; set; }
+        List<string> name_list = new List<string>();
         public bool test = false;
         TextBox[] txtList;
         const string msgPlaceholder = "메세지를 입력하세요.";
@@ -78,17 +76,54 @@ namespace ChatClient
             int Port = Int32.Parse(txt_Port.Text);
             clientSocket = new TcpClient();
             stream = default(NetworkStream);
+
+            DataSet ds = new DataSet();
+            string query = "SELECT name from chatting_program.user_names";
+            MySqlDataAdapter adpt = new MySqlDataAdapter(query, conn);
+            adpt.Fill(ds, "name");
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow r in ds.Tables[0].Rows)
+                {
+                    name_list.Add((string)r["name"]);
+                }
+            }
+
             try
             {
                 clientSocket.Connect(txt_ServerIP.Text, Port); // 접속 IP 및 포트
+                if (txt_user.Text != "")
+                {
+                    foreach (string st in name_list)
+                    {
+                        if (st == txt_user.Text)
+                        {
+                            throw new Exception("예외를 던집니다.");
+
+                        }
+                    }
+                }
+                else
+                {
+                    throw new Exception("예외를 던집니다.");
+                }
                 stream = clientSocket.GetStream();
                 conn.Open();
             }
             catch (Exception e2)
             {
-                MessageBox.Show("서버가 실행중이 아닙니다.", "연결 실패!");
-                return;
+                if (e2 is SocketException)
+                {
+                    MessageBox.Show("서버가 실행중이 아닙니다.", "연결 실패!");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("사용자명이 공란이거나 중복된 사용자명입니다.", "다시 입력해주세요!");
+                    return;
+                }
             }
+
             btn_Login.Enabled = false;
             txt_user.Enabled = false;
             menu_viewer.Enabled = false;
@@ -121,8 +156,9 @@ namespace ChatClient
                     tmp = menuresult;
                     menuresult = menuresult.Remove(menuresult.IndexOf("$"));
                     menuimage = tmp.Remove(0, tmp.IndexOf("$") + 1);
-                    DisplayMenuText(menuresult);
                     DisplayMenuImage(menuimage);
+                    Thread.Sleep(400);
+                    DisplayMenuText(menuresult);
                 }
 
                 else
