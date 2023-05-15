@@ -265,9 +265,9 @@ namespace ChatClient
             int colonIndex = text.IndexOf(':', startIndex); // startIndex 이후의 ':' 인덱스 찾기
             string name = text.Substring(startIndex + 1, colonIndex - (startIndex + 1)); //']'+1 인덱스 값 부터 콜론인덱스 사이의 값만큼 문자열 반환
             string message_1 = text.Substring(colonIndex + 1); //이름 뒤 ':'값 뒤의 메시지 출력
-            if (message_1.Length > 15)
+            if (message_1.Length > 18)
             {
-                message_1 = message_1.Substring(0, 25) + "...";   //내용 생략 
+                message_1 = message_1.Substring(0, 18) + "...";   //내용 생략 
             }
             else
             {
@@ -279,7 +279,7 @@ namespace ChatClient
             alert.label2.Text = " ";
             alert.label2.Text = message_1;          //내용 표시
             alert.StartPosition = FormStartPosition.Manual;
-            alert.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - alert.Width, Screen.PrimaryScreen.WorkingArea.Height - alert.Height);
+            alert.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - alert.Width - 10, Screen.PrimaryScreen.WorkingArea.Height - alert.Height - 10);
 
             alert.ShowDialog();
         }

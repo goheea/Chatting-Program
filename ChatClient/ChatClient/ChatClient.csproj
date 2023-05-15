@@ -143,6 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\chat.png" />
+    <None Include="Resources\x-button.png" />
+    <None Include="Resources\clear.png" />
     <None Include="Resources\icons8_messages_25px_1.png" />
     <None Include="Resources\icons8_messages_25px.png" />
     <None Include="Resources\info.png" />
