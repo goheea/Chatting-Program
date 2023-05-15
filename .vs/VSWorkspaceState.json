@@ -6,6 +6,6 @@
     "\\MultiChatServer",
     "\\MultiChatServer\\MultiChatServer"
   ],
-  "SelectedNode": "\\MultiChatServer\\MultiChatServer\\ServerSocket.cs",
+  "SelectedNode": "\\ChatClient\\ChatClient\\Form1.cs",
   "PreviewInSolutionExplorer": false
 }

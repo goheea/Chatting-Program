@@ -26,7 +26,7 @@ namespace MultiChatServer
         ServerProgram multiServer;
         MenuRecommend menurecommend;
         int serverPort;
-        public MySqlConnection conn = new MySqlConnection("Server=localhost;Port=3306;Database=chatting_program;Uid=root;Pwd=1234");
+        public MySqlConnection conn = new MySqlConnection("Server=localhost;Port=3306;Database=chatting_program;Uid=admin;Pwd=1234");
 
         public Form1()
         {
