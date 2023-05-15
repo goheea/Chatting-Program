@@ -67,6 +67,10 @@ namespace ChatClient
                 if (txt == txt_message) { txt.Text = msgPlaceholder;}
             }
         }
+        private void txt_message_LostFocus(object sender, EventArgs e)
+        {
+            txt_message.Focus(); // 텍스트박스에 다시 포커스를 설정합니다.
+        }
 
         private void btn_Login_Click(object sender, EventArgs e)
         {
@@ -265,7 +269,6 @@ namespace ChatClient
             stream.Flush();
             txt_message.Text = "";
         }
-
         private void txt_message_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) btn_Send_Click(sender, e);
