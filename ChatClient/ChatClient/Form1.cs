@@ -166,14 +166,7 @@ namespace ChatClient
                     DisplayText(message);
                     if (message.EndsWith("님이 입장하셨습니다.") || message.EndsWith("님이 대화방을 나갔습니다."))
                     {
-                        if (message.EndsWith("님이 입장하셨습니다."))
-                        {
-                            DisplayName();
-                        }
-                        if (message.EndsWith("님이 대화방을 나갔습니다."))
-                        {
-                            DisplayName();
-                        }
+                        DisplayName();
                     }
                     else
                     {
