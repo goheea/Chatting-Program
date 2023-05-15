@@ -43,7 +43,7 @@ namespace ChatClient
             txtList = new TextBox[] {txt_message};
             foreach (var txt in txtList)
             {
-                txt.ForeColor = Color.DarkGray; //처음 Placeholder 색 지정
+                txt.ForeColor = Color.DimGray; //처음 Placeholder 색 지정
                 if (txt == txt_message) txt.Text = msgPlaceholder; //처음 Placeholder 글 설정
                 txt.GotFocus += RemovePlaceholder; //텍스트박스 커서 Focus 여부에 따라 이벤트 지정
                 txt.LostFocus += SetPlaceholder;
