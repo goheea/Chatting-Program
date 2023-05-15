@@ -112,17 +112,17 @@ namespace MultiChatServer
 
         public string Recommend()
         {
+            Random rnd = new Random();
+
             //강수형태 없음(0), 기온이 4℃ 이하일 시, hot_menu 랜덤 추출
             if (precipitation == 0 && tmp <= 4)
             {
-                Random rnd = new Random();
-                int index = rnd.Next(hot_menu.Length);
+                int index = rnd.Next(hot_menu.Length); //
                 menu_result = hot_menu[index];
             }
             //강수형태 없음(0), 기온이 5℃~11℃일 시, hot_menu + else_menu 랜덤 추출
             if (precipitation == 0 && tmp >= 5 && tmp <= 11)
             {
-                Random rnd = new Random();
                 string[] combined_menu = hot_menu.Concat(else_menu).ToArray();
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
@@ -130,7 +130,6 @@ namespace MultiChatServer
             //강수형태 없음(0), 기온이 12℃~22℃일 시, hot + rain + cold + else 랜덤 추출
             if (precipitation == 0 && tmp >= 12 && tmp <= 22)
             {
-                Random rnd = new Random();
                 string[] combined_menu = hot_menu.Concat(else_menu).Concat(cold_menu).Concat(rain_menu).ToArray();
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
@@ -139,7 +138,6 @@ namespace MultiChatServer
             //강수형태 없음(0), 기온이 23℃~27℃, 습도가 70 초과일 시, (cold + else) - fry 랜덤 추출
             if (precipitation == 0 && tmp >= 23 && tmp <= 27)
             {
-                Random rnd = new Random();
                 string[] combined_menu;
                 if (humidity <= 70)
                 {
@@ -156,7 +154,6 @@ namespace MultiChatServer
             //강수형태 없음(0), 기온이 12℃~22℃, 습도가 60 초과일 시, cold - fry 랜덤 추출
             if (precipitation == 0 && tmp >= 28)
             {
-                Random rnd = new Random();
                 string[] combined_menu;
                 if (humidity <= 60)
                 {
@@ -173,7 +170,6 @@ namespace MultiChatServer
             //강수형태 비, 소나기, 빗방울 중 하나이고, 기온이 영하 5℃~4℃일 시, hot_menu + rain_menu 랜덤 추출
             if ((precipitation == 1 || precipitation == 4 || precipitation == 5) && tmp <= 4)
             {
-                Random rnd = new Random();
                 string[] combined_menu;
                 if (tmp < -5)
                 {
@@ -189,7 +185,6 @@ namespace MultiChatServer
             //강수형태 비, 소나기, 빗방울 중 하나이고, 기온이 5℃~11℃일 시, hot + rain + else 랜덤 추출
             if ((precipitation == 1 || precipitation == 4 || precipitation == 5) && tmp >= 5 && tmp <= 11)
             {
-                Random rnd = new Random();
                 string[] combined_menu = hot_menu.Concat(else_menu).Concat(rain_menu).ToArray();
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
@@ -197,7 +192,6 @@ namespace MultiChatServer
             //강수형태 비, 소나기, 빗방울 중 하나이고, 기온이 12℃~22℃일 시, all 랜덤 추출
             if ((precipitation == 1 || precipitation == 4 || precipitation == 5) && tmp >= 12 && tmp <= 22)
             {
-                Random rnd = new Random();
                 string[] combined_menu = hot_menu.Concat(else_menu).Concat(rain_menu).Concat(cold_menu).ToArray();
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
@@ -205,7 +199,6 @@ namespace MultiChatServer
             //강수형태 비, 소나기, 빗방울 중 하나이고, 기온이 23℃~27℃일 시, (cold + rain + else) - fry 랜덤 추출
             if ((precipitation == 1 || precipitation == 4 || precipitation == 5) && tmp >= 23 && tmp <= 27)
             {
-                Random rnd = new Random();
                 string[] combined_menu = cold_menu.Concat(else_menu).Concat(rain_menu).Except(fry_menu).ToArray();
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
@@ -213,7 +206,6 @@ namespace MultiChatServer
             //강수형태 비, 소나기, 빗방울 중 하나이고, 기온이 28℃ 이상일 시, (cold + rain) - fry 랜덤 추출
             if ((precipitation == 1 || precipitation == 4 || precipitation == 5) && tmp >= 28)
             {
-                Random rnd = new Random();
                 string[] combined_menu = cold_menu.Concat(rain_menu).Except(fry_menu).ToArray();
                 int index = rnd.Next(combined_menu.Length);
                 menu_result = combined_menu[index];
@@ -222,7 +214,6 @@ namespace MultiChatServer
             //강수형태 비·눈, 눈, 빗방울·눈날림, 눈날림 중 하나이고, 기온이 영하 4℃ 이상일 시, hot + rain + else 랜덤 추출
             if (precipitation == 2 || precipitation == 3 || precipitation == 6 || precipitation == 7)
             {
-                Random rnd = new Random();
                 string[] combined_menu;
                 if (tmp <= -5)
                 {
