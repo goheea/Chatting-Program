@@ -188,9 +188,11 @@ namespace ChatClient
                 }));
             }
             else
+            {
                 rt_Message.AppendText(message + Environment.NewLine);
                 rt_Message.SelectionStart = rt_Message.TextLength; //자동스크롤
                 rt_Message.ScrollToCaret();
+            }
         }
 
         private void DisplayMenuText(string message)
