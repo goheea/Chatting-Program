@@ -50,8 +50,8 @@ namespace MultiChatServer
             url += "&pageNo=1";
             url += "&numOfRows=1000";
             url += "&dataType=XML";
-            url += "&base_date=20230516"; //당일 날짜
-            url += "&base_time=1200"; //시간
+            url += "&base_date=20230517"; //당일 날짜
+            url += "&base_time=0700"; //시간
             url += "&nx=62"; //경기도 성남시 시흥동의 경우 격자 X는 62, 격자 Y는 124
             url += "&ny=124";
 
@@ -113,10 +113,10 @@ namespace MultiChatServer
             //강수형태 없음(0), 기온이 4℃ 이하일 시, hot_menu 랜덤 추출
             //강수형태 없음(0), 기온이 5℃~11℃일 시, hot_menu + else_menu 랜덤 추출
             //강수형태 없음(0), 기온이 12℃~22℃일 시, hot + rain + cold + else 랜덤 추출
-            //강수형태 없음(0), 기온이 23℃~27℃, 습도가 70 이하일 시, cold_menu + else_menu 랜덤 추출
-            //강수형태 없음(0), 기온이 23℃~27℃, 습도가 70 초과일 시, (cold + else) - fry 랜덤 추출
-            //강수형태 없음(0), 기온이 28℃ 이상, 습도가 60 이하일 시, cold_menu 랜덤 추출
-            //강수형태 없음(0), 기온이 12℃~22℃, 습도가 60 초과일 시, cold - fry 랜덤 추출
+            //강수형태 없음(0), 기온이 23℃~30℃, 습도가 70 이하일 시, cold_menu + else_menu 랜덤 추출
+            //강수형태 없음(0), 기온이 23℃~30℃, 습도가 70 초과일 시, (cold + else) - fry 랜덤 추출
+            //강수형태 없음(0), 기온이 31℃ 이상, 습도가 60 이하일 시, cold_menu 랜덤 추출
+            //강수형태 없음(0), 기온이 31℃ 이상, 습도가 60 초과일 시, cold - fry 랜덤 추출
             if (precipitation == 0)
             {
                 if (tmp <= 4)
@@ -133,12 +133,12 @@ namespace MultiChatServer
                     string[] combined_menu = hot_menu.Concat(else_menu).Concat(cold_menu).Concat(rain_menu).ToArray();
                     menu_result = GetRandomMenu(combined_menu, rnd);
                 }
-                else if (tmp >= 23 && tmp <= 27)
+                else if (tmp >= 23 && tmp <= 30)
                 {
                     string[] combined_menu = (humidity <= 70) ? cold_menu.Concat(else_menu).ToArray() : cold_menu.Concat(else_menu).Except(fry_menu).ToArray();
                     menu_result = GetRandomMenu(combined_menu, rnd);
                 }
-                else if (tmp >= 28)
+                else if (tmp >= 31)
                 {
                     string[] combined_menu = (humidity <= 60) ? cold_menu.ToArray() : cold_menu.Except(fry_menu).ToArray();
                     menu_result = GetRandomMenu(combined_menu, rnd);

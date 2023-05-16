@@ -168,21 +168,19 @@ namespace MultiChatServer
             clientList.Clear();
         }
 
-        // Client가 접속하면 이벤트를 발생한다.
         private void Server_Completed(object sender, SocketAsyncEventArgs e)
         {
-            try
+            try  // Client가 접속하면 이벤트를 발생한다.
             {
-                // 접속이 완료되면, Client Event를 생성하여 Receive이벤트를 생성한다.
+                //새 클라이언트가 서버에 접속하면 통신을 위한 객체를 생성.
                 var client = new Client(e.AcceptSocket);
                 client.OnReceive += ClientReceive;
                 client.OnDisconnect += ClientDisconnect;
                 clientSocketList.Add(e.AcceptSocket);
                 clientList.Add(e.AcceptSocket, client);
-                // 서버 Event에 cilent를 제거한다.
-                e.AcceptSocket = null;
-                // Client로부터 Accept이 되면 이벤트를 발생시킨다. (IOCP로 넣는 것)
-                this.socket.AcceptAsync(e);
+
+                e.AcceptSocket = null;  // NULL로 초기화(SocketAsyncEventArgs 객체 재사용)
+                this.socket.AcceptAsync(e); //새 클라이언트 수신 대기상태
                 if (OnConnect != null)
                 {
                     OnConnect(this.socket);
@@ -192,7 +190,6 @@ namespace MultiChatServer
             {
                 return;
             }
-
         }
 
         private void ClientDisconnect(Socket sock)

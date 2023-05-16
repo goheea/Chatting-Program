@@ -128,7 +128,7 @@ namespace ChatClient
             this.label3.Font = new System.Drawing.Font("AppleSDGothicNeoR00", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.Location = new System.Drawing.Point(216, 40);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 25);
+            this.label3.Size = new System.Drawing.Size(54, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "닉네임";
             // 
@@ -149,7 +149,7 @@ namespace ChatClient
             this.label2.Font = new System.Drawing.Font("AppleSDGothicNeoR00", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(23, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 25);
+            this.label2.Size = new System.Drawing.Size(39, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "포트";
             // 
@@ -169,13 +169,13 @@ namespace ChatClient
             this.label1.Font = new System.Drawing.Font("AppleSDGothicNeoR00", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(23, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 25);
+            this.label1.Size = new System.Drawing.Size(39, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "서버";
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(223)))), ((int)(((byte)(239)))));
             this.panel2.Controls.Add(this.btn_Send);
             this.panel2.Controls.Add(this.txt_message);
             this.panel2.Location = new System.Drawing.Point(312, 526);
@@ -200,7 +200,7 @@ namespace ChatClient
             // 
             // txt_message
             // 
-            this.txt_message.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+            this.txt_message.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(223)))), ((int)(((byte)(239)))));
             this.txt_message.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_message.Font = new System.Drawing.Font("AppleSDGothicNeoR00", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txt_message.ForeColor = System.Drawing.SystemColors.WindowFrame;
@@ -294,18 +294,18 @@ namespace ChatClient
             this.username_title.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.username_title.Font = new System.Drawing.Font("AppleSDGothicNeoSB00", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.username_title.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.username_title.Location = new System.Drawing.Point(11, 11);
+            this.username_title.Location = new System.Drawing.Point(16, 11);
             this.username_title.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.username_title.Multiline = true;
             this.username_title.Name = "username_title";
-            this.username_title.Size = new System.Drawing.Size(237, 32);
+            this.username_title.Size = new System.Drawing.Size(242, 32);
             this.username_title.TabIndex = 10;
-            this.username_title.Text = "접속자 리스트";
+            this.username_title.Text = "▪▫▪▫접속자 리스트▫▪▫▪";
+            this.username_title.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.menu_viewer);
             this.panel4.Controls.Add(this.menu_name);
             this.panel4.Controls.Add(this.textBox3);

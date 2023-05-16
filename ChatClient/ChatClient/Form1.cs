@@ -16,7 +16,7 @@ namespace ChatClient
 {
     public partial class Form1 : MetroForm
     {
-        public MySqlConnection conn = new MySqlConnection("Server=localhost;Port=3306;Database=chatting_program;Uid=root;Pwd=1234");
+        public MySqlConnection conn = new MySqlConnection("Server=192.168.100.249;Port=3306;Database=chatting_program;Uid=admin;Pwd=admin1234!");
         TcpClient clientSocket; // 소켓
         NetworkStream stream = default(NetworkStream);
         // 메시지는 개행으로 구분한다.
