@@ -82,12 +82,12 @@ namespace MultiChatServer
             this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Font = new System.Drawing.Font("Myanmar Text", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.textBox2.Location = new System.Drawing.Point(44, 25);
+            this.textBox2.Location = new System.Drawing.Point(34, 26);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(150, 37);
+            this.textBox2.Size = new System.Drawing.Size(130, 61);
             this.textBox2.TabIndex = 20;
             this.textBox2.Text = "SERVER";
             // 
@@ -124,7 +124,7 @@ namespace MultiChatServer
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(154, 19);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(45, 48);
+            this.pictureBox1.Size = new System.Drawing.Size(55, 56);
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             // 

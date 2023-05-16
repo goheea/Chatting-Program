@@ -18,7 +18,7 @@ namespace ChatClient
 {
     public partial class Form1 : MetroForm
     {
-        public MySqlConnection conn = new MySqlConnection("Server=localhost;Port=3306;Database=chatting_program;Uid=admin;Pwd=1234");
+        public MySqlConnection conn = new MySqlConnection("Server=192.168.100.249;Port=3306;Database=chatting_program;Uid=admin;Pwd=admin1234!");
         TcpClient clientSocket; // 소켓
         NetworkStream stream = default(NetworkStream);
         // 메시지는 개행으로 구분한다.
@@ -31,30 +31,26 @@ namespace ChatClient
         String curDate = DateTime.Now.ToString("HH:mm:ss");
         List<string> name_list = new List<string>();
         public bool test = false;
-        TextBox[] txtList;
-        const string msgPlaceholder = "메세지를 입력하세요.";
         string name_tmp = "";
+        const string msgPlaceholder = "메세지를 입력하세요.";
 
         public Form1()
         {
             InitializeComponent();
 
-            txtList = new TextBox[] {txt_message};
-            foreach (var txt in txtList)
-            {
-                txt.ForeColor = Color.DimGray; //처음 Placeholder 색 지정
-                if (txt == txt_message) txt.Text = msgPlaceholder; //처음 Placeholder 글 설정
-                txt.GotFocus += RemovePlaceholder; //텍스트박스 커서 Focus 여부에 따라 이벤트 지정
-                txt.LostFocus += SetPlaceholder;
-            }
+            txt_message.ForeColor = Color.DimGray; // 처음 Placeholder 색 지정
+            txt_message.Text = msgPlaceholder; // 처음 Placeholder 글 설정(메세지를 입력하세요)
+
+            txt_message.GotFocus += RemovePlaceholder; // 텍스트박스 커서 Focus 여부에 따라 이벤트 지정
+            txt_message.LostFocus += SetPlaceholder;
         }
         private void RemovePlaceholder(object sender, EventArgs e)
         {
             TextBox txt = (TextBox)sender;
             if (txt.Text == msgPlaceholder)
-            { //텍스트박스 내용이 사용자가 입력한 값이 아닌 Placeholder일 경우에만, 커서 포커스일때 빈칸으로 만들기
-                txt.ForeColor = Color.Black; //사용자 입력 진한 글씨
-                txt.Text = string.Empty;
+            { //텍스트박스 내용이 Placeholder이고 박스에 포커스가 잡히면,
+                txt.ForeColor = Color.Black; //사용자 입력은 진한 글씨로,
+                txt.Text = string.Empty; //플레이스홀더는 지운다.
             }
         }
         private void SetPlaceholder(object sender, EventArgs e)
@@ -62,8 +58,11 @@ namespace ChatClient
             TextBox txt = (TextBox)sender;
             if (string.IsNullOrWhiteSpace(txt.Text)) //사용자 입력값이 하나도 없는 경우에 포커스 잃으면 Placeholder 적용해주기
             {                
-                txt.ForeColor = Color.DarkGray;
-                if (txt == txt_message) { txt.Text = msgPlaceholder;}
+                txt.ForeColor = Color.DimGray;
+                if (txt == txt_message)
+                {
+                    txt.Text = msgPlaceholder;
+                }
             }
         }
         private void btn_Login_Click(object sender, EventArgs e)

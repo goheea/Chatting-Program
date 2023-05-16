@@ -101,10 +101,10 @@ namespace ChatClient
             this.btn_Login.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_Login.Font = new System.Drawing.Font("AppleSDGothicNeoEB00", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn_Login.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(223)))));
-            this.btn_Login.Location = new System.Drawing.Point(409, 17);
+            this.btn_Login.Location = new System.Drawing.Point(418, 17);
             this.btn_Login.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Login.Name = "btn_Login";
-            this.btn_Login.Size = new System.Drawing.Size(113, 63);
+            this.btn_Login.Size = new System.Drawing.Size(99, 63);
             this.btn_Login.TabIndex = 6;
             this.btn_Login.Text = "로그인";
             this.btn_Login.UseVisualStyleBackColor = false;
@@ -214,9 +214,9 @@ namespace ChatClient
             // menu_start
             // 
             this.menu_start.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.menu_start.Font = new System.Drawing.Font("AppleSDGothicNeoSB00", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.menu_start.Font = new System.Drawing.Font("AppleSDGothicNeoB00", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.menu_start.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(223)))));
-            this.menu_start.Location = new System.Drawing.Point(82, 281);
+            this.menu_start.Location = new System.Drawing.Point(82, 277);
             this.menu_start.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.menu_start.Name = "menu_start";
             this.menu_start.Size = new System.Drawing.Size(98, 49);
@@ -244,7 +244,7 @@ namespace ChatClient
             this.menu_viewer.Location = new System.Drawing.Point(27, 46);
             this.menu_viewer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.menu_viewer.Name = "menu_viewer";
-            this.menu_viewer.Size = new System.Drawing.Size(210, 196);
+            this.menu_viewer.Size = new System.Drawing.Size(210, 188);
             this.menu_viewer.TabIndex = 3;
             this.menu_viewer.TabStop = false;
             // 
@@ -255,7 +255,7 @@ namespace ChatClient
             this.menu_name.Enabled = false;
             this.menu_name.Font = new System.Drawing.Font("AppleSDGothicNeoSB00", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.menu_name.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.menu_name.Location = new System.Drawing.Point(27, 250);
+            this.menu_name.Location = new System.Drawing.Point(27, 241);
             this.menu_name.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.menu_name.Name = "menu_name";
             this.menu_name.ReadOnly = true;
