@@ -300,29 +300,51 @@ namespace ChatClient
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
         }
-        private void show_alert1(string message)                      //비동기 메소드............await
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        private void show_alert1(string message)           //호출
         {
-            Form2 alert = new Form2();
-            string text = message;
 
-            int startIndex = text.IndexOf(']');  // ']' 인덱스값
-            int colonIndex = text.IndexOf(':', startIndex); // startIndex 이후의 ':' 인덱스 찾기
-            string name = text.Substring(startIndex + 1, colonIndex - (startIndex + 1)); //']'+1 인덱스 값 부터 콜론인덱스 사이의 값만큼 문자열 반환
-            string message_1 = text.Substring(colonIndex + 1); //이름 뒤 ':'값 뒤의 메시지 출력
-            if (message_1.Length > 18)
+
+            IntPtr foregroundWindowHandle = GetForegroundWindow();  //윈도우 창 꺼져있거나 뒤로 가 있을 시의 상태를 비교하여 조건절을 실행
+            IntPtr currentWindowHandle = this.Handle;
+            //bool hasFocus = (foregroundWindowHandle == currentWindowHandle);
+            bool hasFocus = (foregroundWindowHandle == currentWindowHandle);
+
+            if (this.WindowState == FormWindowState.Minimized || hasFocus == false)
             {
-                message_1 = message_1.Substring(0, 18) + "...";   //내용 생략 
+
+
+                Form2 alert = new Form2();          //폼2 객체 생성
+                string text = message;
+
+
+                //알림창에 들어갈 내용 입력
+                int startIndex = text.IndexOf(']');  // ']' 인덱스값
+                int colonIndex = text.IndexOf(':', startIndex); // startIndex 이후의 ':' 인덱스 찾기
+                string name = text.Substring(startIndex + 1, colonIndex - (startIndex + 1)); //']'+1 인덱스 값 부터 콜론인덱스 사이의 값만큼 문자열 반환
+                string message_1 = text.Substring(colonIndex + 1); //이름 뒤 ':'값 뒤의 메시지 출력
+                //메시지가 18자 이상 왔을 시 알림창 내용 생략
+                if (message_1.Length > 18)
+                {
+                    message_1 = message_1.Substring(0, 18) + "...";   //내용 생략 
+                }
+
+                //라벨에 값 추가
+                alert.label1.Text = " ";
+                alert.label1.Text = name;               //이름 표시
+                alert.label2.Text = " ";
+                alert.label2.Text = message_1;          //내용 표시
+
+                //알림창 x,y포지션 값
+                alert.StartPosition = FormStartPosition.Manual;
+                alert.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - alert.Width - 10, Screen.PrimaryScreen.WorkingArea.Height - alert.Height - 10);
+
+                //알림창 띄우기
+                alert.ShowDialog();
+                //그 후 타이머 2초 
             }
-            
-            alert.label1.Text = " ";
-            alert.label1.Text = name;               //이름 표시
-            alert.label2.Text = " ";
-            alert.label2.Text = message_1;          //내용 표시
-            alert.StartPosition = FormStartPosition.Manual;
-            alert.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - alert.Width - 10, Screen.PrimaryScreen.WorkingArea.Height - alert.Height - 10);
-
-            alert.ShowDialog();
-
         }
     }
     //-----------------------------------------------------------------------
@@ -331,50 +353,23 @@ namespace ChatClient
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool FlashWindowEx(ref FLASHWINFO pwfi);
-
-        /// Stop flashing. The system restores the window to its original state.
         public const uint FLASHW_STOP = 0;
-
-        /// Flash the window caption.
         public const uint FLASHW_CAPTION = 1;
-
-        /// Flash the taskbar button.
-        public const uint FLASHW_TRAY = 2;
-
-        /// Flash both the window caption and taskbar button.
-        /// This is equivalent to setting the FLASHW_CAPTION | FLASHW_TRAY flags.
+        public const uint FLASHW_TRAY = 2;      //구현해보고 싶어서 찾아보고 이 값만 뽑아씀, 알림창이 뜰 시에만 아이콘이 깜빡인다.
         public const uint FLASHW_ALL = 3;
-
-        /// Flash continuously, until the FLASHW_STOP flag is set.
         public const uint FLASHW_TIMER = 4;
-
-        /// Flash continuously until the window comes to the foreground.
         public const uint FLASHW_TIMERNOFG = 12;
-
         [StructLayout(LayoutKind.Sequential)]
         private struct FLASHWINFO
         {
-
-            /// The size of the structure in bytes.
             public uint cbSize;
-
-            /// A Handle to the Window to be Flashed. The window can be either opened or minimized.
             public IntPtr hwnd;
-
-            /// The Flash Status.
             public uint dwFlags;
-
-            /// The number of times to Flash the window.
             public uint uCount;
-
-            /// The rate at which the Window is to be flashed, in milliseconds. If Zero, the function uses the default cursor blink rate.
             public uint dwTimeout;
         }
-
-        /// Flash the specified Window (Form) until it receives focus.
         public static bool Flash(System.Windows.Forms.Form form)
         {
-            // Make sure we're running under Windows 2000 or later
             if (Win2000OrLater)
             {
                 FLASHWINFO fi = Create_FLASHWINFO(form.Handle, FLASHW_ALL | FLASHW_TIMERNOFG, uint.MaxValue, 0);
@@ -382,8 +377,6 @@ namespace ChatClient
             }
             return false;
         }
-
-        /// Flash the specified Window (form) for the specified number of times
         public static bool Flash(System.Windows.Forms.Form form, uint count)
         {
             if (Win2000OrLater)
@@ -393,7 +386,6 @@ namespace ChatClient
             }
             return false;
         }
-
         private static FLASHWINFO Create_FLASHWINFO(IntPtr handle, uint flags, uint count, uint timeout)
         {
             FLASHWINFO fi = new FLASHWINFO();
@@ -404,8 +396,6 @@ namespace ChatClient
             fi.dwTimeout = timeout;
             return fi;
         }
-
-        /// helper methods
         public static bool Tray(System.Windows.Forms.Form form)
         {
             if (Win2000OrLater)
@@ -415,7 +405,6 @@ namespace ChatClient
             }
             return false;
         }
-
         public static bool TrayAndWindow(System.Windows.Forms.Form form)
         {
             if (Win2000OrLater)
@@ -426,7 +415,6 @@ namespace ChatClient
             return false;
         }
 
-        /// Stop Flashing the specified Window (form)
         public static bool Stop(System.Windows.Forms.Form form)
         {
             if (Win2000OrLater)
@@ -437,10 +425,9 @@ namespace ChatClient
             return false;
         }
 
-        /// A boolean value indicating whether the application is running on Windows 2000 or later.
         private static bool Win2000OrLater
         {
-           get { return System.Environment.OSVersion.Version.Major >= 5; }
+            get { return System.Environment.OSVersion.Version.Major >= 5; }
         }
 
     }
