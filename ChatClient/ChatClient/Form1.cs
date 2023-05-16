@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Configuration; //참조 추가를 해야함(어셈블리탭 -> System.Configuration.dll)
 using MySql.Data.MySqlClient; //솔루션용 nuget패키지 관리자에서 MySql.Data를 설치해야함.
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace ChatClient
 {
@@ -133,7 +134,7 @@ namespace ChatClient
             while (!bThreadExit)
             {
                 stream = clientSocket.GetStream();
-                int BUFFERSIZE = clientSocket.ReceiveBufferSize;
+                int BUFFERSIZE = 10000000; //사진을 받기 위해서 버퍼 사이즈 크기 크게 주기
                 byte[] buffer = new byte[BUFFERSIZE];
                 int bytes = stream.Read(buffer, 0, buffer.Length);
                 string message = Encoding.Unicode.GetString(buffer, 0, bytes);
@@ -145,8 +146,11 @@ namespace ChatClient
                     tmp = menuresult;
                     menuresult = menuresult.Remove(menuresult.IndexOf("$"));
                     menuimage = tmp.Remove(0, tmp.IndexOf("$") + 1);
-                    DisplayMenuImage(menuimage);
-                    Thread.Sleep(400);
+                    byte[] byteArray = Convert.FromBase64String(menuimage);
+                    MemoryStream ms = new MemoryStream(byteArray, 0, byteArray.Length);
+                    ms.Write(byteArray, 0, byteArray.Length);
+                    Image image = Image.FromStream(ms, true);
+                    DisplayMenuImage(image);
                     DisplayMenuText(menuresult);
                 }
 
@@ -203,19 +207,19 @@ namespace ChatClient
                 menu_name.Text = message;
         }
 
-        private void DisplayMenuImage(string message)
+        private void DisplayMenuImage(Image image)
         {
             if (menu_viewer.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
             {
                 menu_viewer.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
                 {
-                    menu_viewer.ImageLocation = message;
+                    menu_viewer.Image = image;
                     menu_viewer.SizeMode = PictureBoxSizeMode.StretchImage;
                 }));
             }
             else
             {
-                menu_viewer.ImageLocation = message;
+                menu_viewer.Image = image;
                 menu_viewer.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }

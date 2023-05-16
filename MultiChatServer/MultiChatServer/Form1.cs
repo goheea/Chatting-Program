@@ -64,9 +64,11 @@ namespace MultiChatServer
                 });
             }
             else
+            {
                 txt_Message.AppendText(text + Environment.NewLine);
                 txt_Message.SelectionStart = txt_Message.TextLength; //자동스크롤
                 txt_Message.ScrollToCaret();
+            }
         }
 
         private void button1_Click(object sender, EventArgs ev)
@@ -113,7 +115,14 @@ namespace MultiChatServer
             }
             else
             {
-                sendMsg = "[ " + curDate + " ] " + stCmd + " : " + stData;
+                if(stCmd.Contains("메뉴 추천 버튼 클릭"))
+                {
+                    sendMsg = "[ " + curDate + " ] " + stCmd + " : " + stData.Substring(0, stData.IndexOf("$"));
+                }
+                else
+                {
+                    sendMsg = "[ " + curDate + " ] " + stCmd + " : " + stData;
+                }
             }
             if (stCmd != "")
             {

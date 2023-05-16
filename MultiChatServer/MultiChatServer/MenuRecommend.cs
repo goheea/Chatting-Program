@@ -55,8 +55,6 @@ namespace MultiChatServer
             url += "&nx=62"; //경기도 성남시 시흥동의 경우 격자 X는 62, 격자 Y는 124
             url += "&ny=124";
 
-            Console.WriteLine(url);
-
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
 
@@ -67,7 +65,6 @@ namespace MultiChatServer
                 results = reader.ReadToEnd();
             }
 
-            Console.WriteLine(results);
             //precipitation는 강수형태, humidity는 습도, RN1는 1시간 강수량, tmp는 기온
             //UUU는 풍속(동서성분), VEC는 풍향, VVV는 풍속(남북성분), WSD는 풍속
 
@@ -83,20 +80,21 @@ namespace MultiChatServer
                 {
                     foreach (XmlNode node1 in xmlList)  // <item> 값 읽어 들이기
                     {
-                        if (node1["category"].InnerText.Equals("tmp"))  // 기온
+                        //Console.WriteLine(node1["category"]);
+                        if (node1["category"].InnerText.Equals("T1H"))  // 기온
                         {
                             tmp = double.Parse(node1["obsrValue"].InnerText);
                             Console.WriteLine("기온은 {0}", tmp);
                         }
 
-                        if (node1["category"].InnerText.Equals("precipitation"))  // 강수
+                        if (node1["category"].InnerText.Equals("PTY"))  // 강수
                         {
                             precipitation = int.Parse(node1["obsrValue"].InnerText);
                             Console.WriteLine("강수형태는 {0}", precipitation);
                         }
-                        if (node1["category"].InnerText.Equals("humidity"))  // 습도
+                        if (node1["category"].InnerText.Equals("REH"))  // 습도
                         {
-                            precipitation = int.Parse(node1["obsrValue"].InnerText);
+                            humidity = int.Parse(node1["obsrValue"].InnerText);
                             Console.WriteLine("습도는 {0}", humidity);
                         }
                     }
@@ -187,17 +185,11 @@ namespace MultiChatServer
                 string[] combined_menu = (tmp <= -5) ? hot_menu.Concat(else_menu).ToArray() : hot_menu.Concat(rain_menu).Concat(else_menu).ToArray();
                 menu_result = GetRandomMenu(combined_menu, rnd);
             }
-            Console.WriteLine("결과는 {0}", menu_result);
-
-            int menu_number = Array.IndexOf(all_menu, menu_result) + 1;
-            string image_load = menu_number.ToString() + ".jpg";
-            Console.WriteLine(image_load);
-
             return menu_result;
         }
-        public string GetRandomMenu(string[] menuArray, Random rnd)
+        public string GetRandomMenu(string[] menuArray, Random rnd) //중복방지 메서드
         {
-            string selectedMenu = menu_result;
+            string selectedMenu = menu_result; //selectedMenu 변수에 menu_result 값 할당
             while (selectedMenu == menu_result)
             {
                 int index = rnd.Next(menuArray.Length);

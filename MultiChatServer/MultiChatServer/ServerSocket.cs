@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using System.Net; //WebClient
+using System.IO;
+using System.Drawing;
 
 namespace MultiChatServer
 {
@@ -11,7 +13,7 @@ namespace MultiChatServer
         // 메시지는 개행으로 구분한다.
         private static char CR = (char)0x0D;
         private static char LF = (char)0x0A;
-        string url_base = "https://github.com/goheea/MiniServer/blob/main/";
+        string where_base = "C:\\pic\\";
         string tmp = "";
         private Socket socket;
         // 메시지를 모으기 위한 버퍼
@@ -28,7 +30,6 @@ namespace MultiChatServer
             try //여기서 this는 SocketAsyncEventArgs를 나타내고, this 뒤는 SocketAsyncEventArgs의 속성을 나타낸다.
             {
                 this.socket = socket;
-                Console.WriteLine("{0}", socket.Handle);
                 // 메모리 버퍼를 초기화 한다. 크기는 1024이다
                 base.SetBuffer(new byte[1024], 0, 1024);
                 base.UserToken = socket;
@@ -79,7 +80,6 @@ namespace MultiChatServer
                 // 메시지의 끝이 이스케이프 \r\n의 형태이면 서버에 표시한다.
                 if (sb.Length >= 2 && sb[sb.Length - 2] == CR && sb[sb.Length - 1] == LF)
                 {
-                    Console.WriteLine("{0}", socket);
                     // 개행은 없애고..
                     sb.Length = sb.Length - 2;
                     // string으로 변환한다.
@@ -91,20 +91,18 @@ namespace MultiChatServer
                         {
                             msg += menurecommend.Recommend();
                             msg += "$";
-                            tmp = url_base;
+                            tmp = where_base;
                             tmp += menurecommend.findIndex() + 1;
-                            tmp += ".jpg?raw=true";
-                            msg += tmp;
+                            tmp += ".jpg";
+                            Image img = Image.FromFile(tmp);
+                            MemoryStream mstream = new MemoryStream();
+                            img.Save(mstream, img.RawFormat);
+                            byte[] imgBytes = mstream.ToArray();
+                            msg += Convert.ToBase64String(imgBytes);
                             tmp = "";
                         }
-                        Console.WriteLine(msg);
                         OnReceive(this.socket, msg); // 수신 이벤트 발생
                     }
-
-                    // 콘솔에 출력한다.
-                    Console.WriteLine(msg);
-                    // Client로 Echo를 보낸다.
-                    //Send($"Echo - {msg}\r\n>");
                     // 만약 메시지가 exit이면 접속을 끊는다.
                     if ("exit".Equals(msg, StringComparison.OrdinalIgnoreCase))
                     {
@@ -115,7 +113,6 @@ namespace MultiChatServer
                         socket.DisconnectAsync(this);
                         return;
                     }
-
                     // 버퍼를 비운다.
                     sb.Clear();
                 }
@@ -178,7 +175,6 @@ namespace MultiChatServer
             {
                 // 접속이 완료되면, Client Event를 생성하여 Receive이벤트를 생성한다.
                 var client = new Client(e.AcceptSocket);
-                Console.WriteLine("{0}", e.AcceptSocket.Handle);
                 client.OnReceive += ClientReceive;
                 client.OnDisconnect += ClientDisconnect;
                 clientSocketList.Add(e.AcceptSocket);
@@ -203,7 +199,6 @@ namespace MultiChatServer
         {
             if (OnDisconnect != null)
                 OnDisconnect(sock);
-            Console.WriteLine("{0}", sock.Handle);
             clientList.Remove(sock);
             clientSocketList.Remove(sock);
         }
