@@ -44,14 +44,13 @@ namespace MultiChatServer
         string[] fry_menu = new string[] { "돈코츠라멘", "김치카츠나베", "해물파전", "김치전", "감자전", "후라이드치킨", "양념치킨",
             "간장치킨", "탕수육", "꿔바로우", "카레돈가스", "등심돈가스", "가츠동", "텐동"};
 
-
         public MenuRecommend()
         {
             url += "?ServiceKey=" + "pLBMhaAKgs5d%2FhcjmoKmTh9VEIKcq948xlXdnVVv1hwIwjc%2FBQZqHcb1c6SZ2spb%2Br%2B89WN6SjL8gggy2HkwqQ%3D%3D"; // Service Key
             url += "&pageNo=1";
             url += "&numOfRows=1000";
             url += "&dataType=XML";
-            url += "&base_date=20230515"; //당일 날짜
+            url += "&base_date=20230516"; //당일 날짜
             url += "&base_time=1200"; //시간
             url += "&nx=62"; //경기도 성남시 시흥동의 경우 격자 X는 62, 격자 Y는 124
             url += "&ny=124";
@@ -71,7 +70,6 @@ namespace MultiChatServer
             Console.WriteLine(results);
             //precipitation는 강수형태, humidity는 습도, RN1는 1시간 강수량, tmp는 기온
             //UUU는 풍속(동서성분), VEC는 풍향, VVV는 풍속(남북성분), WSD는 풍속
-
 
             // 수신된 XML형식의 데이터를 컨트롤하기위해 XmlDocument 인스턴스를 생성
             XmlDocument xml = new XmlDocument();
@@ -211,11 +209,6 @@ namespace MultiChatServer
         {
             int index = Array.IndexOf(all_menu, menu_result);
             return index;
-
         }
-
     }
-    /*string imagePath = @"C:\menu\" + image_load;
-      pictureBox1.Image = Image.FromFile(imagePath);
-    */
 }

@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Net; //WebClient
-using System.IO; //MemoryStream
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.IO.Ports;
 
 namespace MultiChatServer
 {
@@ -157,7 +147,6 @@ namespace MultiChatServer
         private Socket socket;
         public List<Socket> clientSocketList = new List<Socket>();//클라이언트 소켓을 관리하는 리스트, 소켓과 접속 아이디를 관리하자.
         public Dictionary<Socket, Client> clientList = new Dictionary<Socket, Client>();//클라이언트 소켓을 관리하는 리스트, 소켓과 접속 아이디를 관리하자.
-
         public Server(Socket socket)
         {
             this.socket = socket;
@@ -212,7 +201,6 @@ namespace MultiChatServer
 
         private void ClientDisconnect(Socket sock)
         {
-
             if (OnDisconnect != null)
                 OnDisconnect(sock);
             Console.WriteLine("{0}", sock.Handle);
@@ -245,7 +233,6 @@ namespace MultiChatServer
         public event ClientConnectHandler OnConnect;
 
         private bool _disposed = false;
-
 
         public Server serverSocket;
         public IPEndPoint ipEndPoint;
@@ -298,7 +285,6 @@ namespace MultiChatServer
                 {
                     serverSocket.SocketClose();
                     base.Disconnect(true);
-
                     base.Shutdown(SocketShutdown.Both);
                     base.Close();
                     base.Dispose();

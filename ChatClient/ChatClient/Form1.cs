@@ -1,14 +1,11 @@
 ﻿using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration; //참조 추가를 해야함(어셈블리탭 -> System.Configuration.dll)
 using MySql.Data.MySqlClient; //솔루션용 nuget패키지 관리자에서 MySql.Data를 설치해야함.
@@ -18,7 +15,7 @@ namespace ChatClient
 {
     public partial class Form1 : MetroForm
     {
-        public MySqlConnection conn = new MySqlConnection("Server=192.168.100.249;Port=3306;Database=chatting_program;Uid=admin;Pwd=admin1234!");
+        public MySqlConnection conn = new MySqlConnection("Server=localhost;Port=3306;Database=chatting_program;Uid=root;Pwd=1234");
         TcpClient clientSocket; // 소켓
         NetworkStream stream = default(NetworkStream);
         // 메시지는 개행으로 구분한다.
@@ -37,10 +34,8 @@ namespace ChatClient
         public Form1()
         {
             InitializeComponent();
-
             txt_message.ForeColor = Color.DimGray; // 처음 Placeholder 색 지정
             txt_message.Text = msgPlaceholder; // 처음 Placeholder 글 설정(메세지를 입력하세요)
-
             txt_message.GotFocus += RemovePlaceholder; // 텍스트박스 커서 Focus 여부에 따라 이벤트 지정
             txt_message.LostFocus += SetPlaceholder;
         }
@@ -94,7 +89,6 @@ namespace ChatClient
                         if (st == txt_user.Text)
                         {
                             throw new Exception("예외를 던집니다.");
-
                         }
                     }
                 }
@@ -145,7 +139,6 @@ namespace ChatClient
                 string message = Encoding.Unicode.GetString(buffer, 0, bytes);
                 Console.WriteLine("메시지는 {0}", message);
                 
-
                 if (message.Contains("메뉴 추천 버튼 클릭"))
                 {
                     menuresult = message.Remove(0, 12);
@@ -170,7 +163,9 @@ namespace ChatClient
                         int colonIndex = message.IndexOf(':', startIndex); // startIndex 이후의 ':' 인덱스 찾기
                         string name0 = message.Substring(startIndex + 2, colonIndex - (startIndex + 2)-1); //']'+1 인덱스 값 부터 콜론인덱스 사이의 값만큼 문자열 반환
                         if(name0 != name_tmp)
+                        {
                             show_alert1(message);
+                        }
                     }
                 }
             }
@@ -229,7 +224,6 @@ namespace ChatClient
         {
             if (usernameBox.InvokeRequired) //다른 쓰레드에서 실행되어 Invoke가 필요한 상태라면 
             {
-                //usernameBox.Clear();
                 usernameBox.BeginInvoke(new MethodInvoker(delegate   ///델리게이트로 넘겨서 실행
                 {
                     usernameBox.Clear();
@@ -270,9 +264,7 @@ namespace ChatClient
             stream.Flush();
             bThreadExit = true;
             Thread.Sleep(1000);
-
             Application.Exit();
-
         }
 
         private void btn_Send_Click(object sender, EventArgs e)

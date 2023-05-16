@@ -1,16 +1,7 @@
 ﻿using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration; //참조 추가를 해야함(어셈블리탭 -> System.Configuration.dll)
 using MySql.Data.MySqlClient; //솔루션용 nuget패키지 관리자에서 MySql.Data를 설치해야함.
@@ -20,13 +11,12 @@ namespace MultiChatServer
 {
     public partial class Form1 : MetroForm
     {
-
         public Dictionary<Socket, string> clientSocketList = new Dictionary<Socket, string>();//클라이언트 소켓을 관리하는 리스트, 소켓과 접속 아이디를 관리하자.
         //string은 김지원, Socket 클래스는 잘 모르겠음.
         ServerProgram multiServer;
         MenuRecommend menurecommend;
         int serverPort;
-        public MySqlConnection conn = new MySqlConnection("Server=192.168.100.158;Port=3306;Database=chatting_program;Uid=admin;Pwd=admin1234!");
+        public MySqlConnection conn = new MySqlConnection("Server=localhost;Port=3306;Database=chatting_program;Uid=root;Pwd=1234");
 
         public Form1()
         {
@@ -37,9 +27,7 @@ namespace MultiChatServer
         private void allClientSend(string message, string username, bool flag)
         {
             String curDate = DateTime.Now.ToString("HH:mm:ss"); // 현재 날짜 받기
-
             String sendMsg;
-
             byte[] buffer = null;
             if (flag)
             {
@@ -56,9 +44,7 @@ namespace MultiChatServer
             }
             else
             {
-
                 sendMsg = message;
-
             }
             displayMessage(sendMsg);
             multiServer.SendMessage(sendMsg);
@@ -93,7 +79,6 @@ namespace MultiChatServer
             }
             catch (FormatException e)
             {
-                //textbox 에 숫자 외의 문자인 경우
                 serverPort = 1004;
             }
             conn.Open();
@@ -102,7 +87,6 @@ namespace MultiChatServer
             multiServer.OnConnect += clientConnected;
             multiServer.OnDisconnect += clientDisconncted;
             multiServer.OnReceive += clientReceive;
-
         }
 
         private void clientReceive(Socket sock, String msg)
