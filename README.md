@@ -18,4 +18,4 @@
 <br/>
 
 ### MySQL 연동
-<img srt="![db](https://github.com/goheea/Chatting-Program/assets/58849237/3d16b0bb-42a1-47d1-8328-b35a57ebd403)">
+![db](https://github.com/goheea/Chatting-Program/assets/58849237/642d1e67-1f0c-4e67-b02e-0856ba352f31)
