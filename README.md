@@ -15,7 +15,7 @@
 
 ### 클라이언트(Client)
 1. 추천된 메뉴의 이름과 사진을 화면에 출력해준다.
-
+<br/>
 
 ### MySQL 연동
-<img srt="C:\Users\Admin\Desktop/db.jpg">
+<img srt="![db](https://github.com/goheea/Chatting-Program/assets/58849237/3d16b0bb-42a1-47d1-8328-b35a57ebd403)">
